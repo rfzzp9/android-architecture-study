@@ -7,6 +7,10 @@ android {
     namespace = "com.joohyeong.architecture_pattern_study"
     compileSdk = 35
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.joohyeong.architecture_pattern_study"
         minSdk = 31
