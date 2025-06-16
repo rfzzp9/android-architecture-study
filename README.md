@@ -81,8 +81,8 @@
 <br>
 <br>
 
-[참고] <br>
-[좋은 개발 스터디를 운영하는 ](https://yozm.wishket.com/magazine/detail/1593/) <br>
+[참고] <br><br>
+[좋은 개발 스터디를 운영하는 법](https://yozm.wishket.com/magazine/detail/1593/) <br>
 [효과적인 코드리뷰를 위한 리뷰어의 자세](https://tech.kakao.com/posts/498) <br>
 [코드 리뷰 기본 원칙과 코드 리뷰 요청 시 지켜야 할 매너](https://github.com/meshkorea/front-end-engineering/blob/main/conventions/code-review/index.md) <br>
 [코드 리뷰 in 뱅크샐러드 개발 문화](https://blog.banksalad.com/tech/banksalad-code-review-culture/)
