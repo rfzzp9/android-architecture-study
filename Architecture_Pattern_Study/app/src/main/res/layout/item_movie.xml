@@ -51,6 +51,4 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 
-    <!--  아이템당 영화 포스터 이미지, 영화명, 대표상영시간, 대표관람등급 표시  -->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
