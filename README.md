@@ -65,13 +65,15 @@
   - 성능에 아주 유리한 코드라고 생각되네요.
   - 예외 처리가 꽤 꼼꼼해서 좋네요.
   - 함수, 변수명이 직관적이어서 좋네요.
- 
+
+<br>
 
 ## 4. 리뷰하기 좋은 PR 만들기
 
 
 - PR(Pull Request) 시, 리뷰어가 이해하기 쉽도록 충분한 설명을 남겨주세요.
-  - 커밋 메세지는 작업 목적이 잘 드러나도록 작성합니다.
+  - 커밋 메세지는 작업 목적이 잘 드러나도록 작성합니다. <br>
+    [간단하고 실용적인 Git 컨벤션](https://chaechae.life/blog/simplified-git-conventions#google_vignette)
   - 권장되는 PR 템플릿 예시를 참고하세요. <br>
     [Pull Request 작성에 관한 블로그](https://github.com/rfzzp9/android-study-1st/edit/main/README.md)
 
