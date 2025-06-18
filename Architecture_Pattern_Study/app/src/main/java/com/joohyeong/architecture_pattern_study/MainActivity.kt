@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerMovie.adapter = MovieAdapter(
             movies = movies,
             onMovieClick = {
-                startActivity(MovieDetailActivity.newIntent(context = this, movieId = it.toLong()))
+                startActivity(MovieDetailActivity.newIntent(context = this, movieId = it))
             }
         )
     }

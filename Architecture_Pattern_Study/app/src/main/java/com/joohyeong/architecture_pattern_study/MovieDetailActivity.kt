@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMovieDetailBinding
 
 class MovieDetailActivity : AppCompatActivity() {
-    private val binding = ActivityMovieDetailBinding.inflate(layoutInflater)
+    private val binding by lazy { ActivityMovieDetailBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +17,7 @@ class MovieDetailActivity : AppCompatActivity() {
     companion object {
         private const val EXTRA_MOVIE_ID = "extra_movie_id"
 
-        fun newIntent(context: Context, movieId: Long): Intent =
+        fun newIntent(context: Context, movieId: String): Intent =
             Intent(context, MovieDetailActivity::class.java).apply {
                 putExtra(EXTRA_MOVIE_ID, movieId)
             }
