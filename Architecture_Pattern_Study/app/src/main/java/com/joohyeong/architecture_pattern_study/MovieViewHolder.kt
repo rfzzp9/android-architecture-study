@@ -3,6 +3,8 @@ package com.joohyeong.architecture_pattern_study
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.joohyeong.architecture_pattern_study.databinding.ItemMovieBinding
 import com.joohyeong.architecture_pattern_study.domain.Movie
 
@@ -26,6 +28,10 @@ class MovieViewHolder(
             textMovieTitle.text = movie.title
             textMovieAudienceRating.text = movie.audienceRating
             textMovieRuntime.text = movie.runtime
+            Glide.with(itemView)
+                .load(movie.posterUrl)
+                .apply(RequestOptions.centerCropTransform())
+                .into(imageMoviePoster)
         }
     }
 }
