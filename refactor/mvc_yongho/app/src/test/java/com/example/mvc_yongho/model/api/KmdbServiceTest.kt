@@ -1,4 +1,4 @@
-package com.example.mvc_yongho.model
+package com.example.mvc_yongho.model.api
 
 import com.example.mvc_yongho.model.network.api.KmdbService
 import kotlinx.coroutines.test.runTest

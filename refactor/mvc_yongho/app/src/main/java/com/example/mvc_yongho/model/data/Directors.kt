@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Directors(
-    @SerialName("director") val director: List<DirectorInfo>
+    @SerialName("director") val director: List<DirectorInfo> = emptyList()
 )

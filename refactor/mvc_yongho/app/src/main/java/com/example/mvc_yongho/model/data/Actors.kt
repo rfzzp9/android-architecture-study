@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Actors(
-    @SerialName("actor") val actor: List<ActorInfo>
+    @SerialName("actor") val actor: List<ActorInfo> = emptyList()
 )
