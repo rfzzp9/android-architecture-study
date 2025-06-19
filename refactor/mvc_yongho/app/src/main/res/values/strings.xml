@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">mvc_yongho</string>
+    <string name="runtime_format">%s분</string>
 </resources>
