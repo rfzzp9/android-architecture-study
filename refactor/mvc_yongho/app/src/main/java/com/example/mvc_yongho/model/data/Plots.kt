@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Plots(
-    @SerialName("plot") val plot: List<PlotInfo>
+    @SerialName("plot") val plot: List<PlotInfo> = emptyList()
 )
