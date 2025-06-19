@@ -40,7 +40,7 @@ class KmdbServiceTest {
     }
 
     @Test
-    fun `영화_정보_요청`() = runTest {
+    fun 영화_정보_요청() = runTest {
         enqueueResponse(filename = "/KmdbResponse.json")
         val response = kmdbService.searchMovies(title = "아바타")
         val data = requireNotNull(response.data)

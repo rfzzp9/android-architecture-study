@@ -21,7 +21,7 @@ class MovieDataSourceImplTest {
     }
 
     @Test
-    fun `영화 검색 성공시 Result Success 반환`() = runTest {
+    fun 영화_검색_성공시_Result_Success_반환() = runTest {
         val title = "아바타"
         val mockResponse = KmdbResponse(
             query = "",
