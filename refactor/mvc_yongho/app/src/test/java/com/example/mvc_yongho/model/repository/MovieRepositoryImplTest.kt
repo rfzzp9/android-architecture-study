@@ -27,7 +27,7 @@ class MovieRepositoryImplTest {
     }
 
     @Test
-    fun `영화 검색 성공시 MovieInfo 리스트 반환`() = runTest {
+    fun 영화_검색_성공시_MovieInfo_리스트_반환() = runTest {
         val title = "아바타"
         val movieInfo1 = MovieInfo(
             docId = "1234",
