@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- 영화 포스터 -->
         <ImageView
             android:id="@+id/image_movie_poster"
             android:layout_width="0dp"
@@ -22,7 +21,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />
 
-        <!-- 영화명 -->
         <TextView
             android:id="@+id/text_movie_title"
             android:layout_width="0dp"
@@ -35,7 +33,6 @@
             app:layout_constraintTop_toBottomOf="@id/image_movie_poster"
             tools:text="영화명" />
 
-        <!-- 감독명 -->
         <TextView
             android:id="@+id/text_movie_director"
             android:layout_width="0dp"
@@ -46,7 +43,6 @@
             app:layout_constraintTop_toBottomOf="@id/text_movie_title"
             tools:text="감독: 홍길동" />
 
-        <!-- 배우명 -->
         <TextView
             android:id="@+id/text_movie_actors"
             android:layout_width="0dp"
@@ -57,7 +53,6 @@
             app:layout_constraintTop_toBottomOf="@id/text_movie_director"
             tools:text="배우: 김영희, 박철수" />
 
-        <!-- 줄거리 -->
         <TextView
             android:id="@+id/text_movie_synopsis"
             android:layout_width="0dp"
@@ -68,7 +63,6 @@
             app:layout_constraintTop_toBottomOf="@id/text_movie_actors"
             tools:text="줄거리: 이 영화는..." />
 
-        <!-- 대표 상영 시간 -->
         <TextView
             android:id="@+id/text_movie_runtime"
             android:layout_width="0dp"
@@ -79,7 +73,6 @@
             app:layout_constraintTop_toBottomOf="@id/text_movie_synopsis"
             tools:text="상영 시간: 123분" />
 
-        <!-- 대표 관람 등급 -->
         <TextView
             android:id="@+id/text_movie_rating"
             android:layout_width="0dp"
@@ -90,7 +83,6 @@
             app:layout_constraintTop_toBottomOf="@id/text_movie_runtime"
             tools:text="관람 등급: 15세 이상 관람가" />
 
-        <!-- 대표 개봉일 -->
         <TextView
             android:id="@+id/text_movie_release_date"
             android:layout_width="0dp"
