@@ -48,8 +48,6 @@ fun SearchScreen(
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
 
-    //val controller = remember { MovieController(context, MovieModel(context)) }
-
     Scaffold(
         modifier = Modifier
             .pointerInput(Unit) {
