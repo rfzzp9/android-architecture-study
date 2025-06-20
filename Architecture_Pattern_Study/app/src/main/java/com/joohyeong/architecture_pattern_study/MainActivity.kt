@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val movieRepository = MovieRepository()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +30,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchMovies() {
         CoroutineScope(Dispatchers.Main).launch {
-            val movies = movieRepository.fetchMovies()
+            val movies = MovieRepository.fetchMovies()
             initMovieAdapter(movies)
         }
     }
 
     private fun applySystemBarsPadding() {
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

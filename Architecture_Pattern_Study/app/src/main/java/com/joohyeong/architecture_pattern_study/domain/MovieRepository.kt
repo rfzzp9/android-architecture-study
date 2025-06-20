@@ -6,7 +6,7 @@ import com.joohyeong.architecture_pattern_study.data.mapper.toMovie
 import com.joohyeong.architecture_pattern_study.data.mapper.toMovieDetail
 import com.joohyeong.architecture_pattern_study.data.response.MovieEntity
 
-class MovieRepository {
+object MovieRepository {
     private val movieService = ApiClient.client.create(MovieService::class.java)
     private val movieCache = mutableListOf<MovieEntity>()
 
