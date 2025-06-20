@@ -2,6 +2,8 @@ package com.joohyeong.architecture_pattern_study.domain
 
 import com.joohyeong.architecture_pattern_study.data.ApiClient
 import com.joohyeong.architecture_pattern_study.data.MovieService
+import com.joohyeong.architecture_pattern_study.data.mapper.toMovie
+import com.joohyeong.architecture_pattern_study.data.mapper.toMovieDetail
 import com.joohyeong.architecture_pattern_study.data.response.MovieEntity
 
 class MovieRepository {
@@ -17,17 +19,11 @@ class MovieRepository {
         }
 
         return Movies(values = movieCache.map { entity ->
-            Movie(
-                id = entity.id, // Assuming repRlsDate is unique for each movie
-                title = entity.title,
-                posterUrl = entity.posters,
-                audienceRating = entity.rating,
-                runtime = entity.runtime
-            )
+            entity.toMovie()
         })
     }
 
-    suspend fun fetchMovieById(id: String): Movie? {
+    suspend fun fetchMovieDetailById(id: String): MovieDetail? {
         if (movieCache.isEmpty()) {
             movieCache.addAll(
                 movieService.fetchMovies().body()
@@ -35,14 +31,6 @@ class MovieRepository {
             )
         }
 
-        return movieCache.find { it.id == id }?.let { entity ->
-            Movie(
-                id = entity.id,
-                title = entity.title,
-                posterUrl = entity.posters,
-                audienceRating = entity.rating,
-                runtime = entity.runtime
-            )
-        }
+        return movieCache.find { it.id == id }?.toMovieDetail()
     }
 }

@@ -8,6 +8,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMainBinding
 import com.joohyeong.architecture_pattern_study.domain.MovieRepository
 import com.joohyeong.architecture_pattern_study.domain.Movies
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -22,8 +25,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         applySystemBarsPadding()
 
-        val movies = movieRepository.fetchMovies()
-        initMovieAdapter(movies)
+        fetchMovies()
+    }
+
+    private fun fetchMovies() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val movies = movieRepository.fetchMovies()
+            initMovieAdapter(movies)
+        }
     }
 
     private fun applySystemBarsPadding() {
