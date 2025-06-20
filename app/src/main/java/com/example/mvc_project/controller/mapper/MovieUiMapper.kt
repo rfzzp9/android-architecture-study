@@ -7,5 +7,9 @@ fun MovieDataDTO.toUiModel() = MovieUiState(
     movieName = title,
     moviePoster = kmdbUrl,
     movieRunningTime = runtime,
-    movieGrade = rating
+    movieGrade = rating,
+    actorName = actors.actor.first().actorNm,
+    director = directors.director.first().directorNm,
+    plotText = plots.plot.first().plotText,
+    prodYear = prodYear
 )
