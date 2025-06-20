@@ -1,9 +1,6 @@
-package com.csb.koreamoviedb_mvc.view
+package com.csb.koreamoviedb_mvc.view.screen
 
 import android.content.Context
-import android.util.Log
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,9 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -34,14 +29,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.NavHostController
-import coil.compose.AsyncImagePainter
-import coil.compose.SubcomposeAsyncImage
-import com.csb.koreamoviedb_mvc.component.ClickableLinkText
-import com.csb.koreamoviedb_mvc.component.GlideBox
-import com.csb.koreamoviedb_mvc.component.InfoText
-import com.csb.koreamoviedb_mvc.component.SubComposeAsyncImageBox
-import com.csb.koreamoviedb_mvc.tools.rememberDefaultShimmer
-import com.valentinilk.shimmer.shimmer
+import com.csb.koreamoviedb_mvc.view.component.ClickableLinkText
+import com.csb.koreamoviedb_mvc.view.component.GlideBox
+import com.csb.koreamoviedb_mvc.view.component.InfoText
+import com.csb.koreamoviedb_mvc.view.model.SharedModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

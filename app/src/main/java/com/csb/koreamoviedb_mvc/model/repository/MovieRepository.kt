@@ -1,27 +1,23 @@
-package com.csb.koreamoviedb_mvc.model
+package com.csb.koreamoviedb_mvc.model.repository
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.csb.koreamoviedb_mvc.R
-import com.csb.koreamoviedb_mvc.model.dataclass.Movie
-import com.csb.koreamoviedb_mvc.model.dataclass.ResultMovieClass
+import com.csb.koreamoviedb_mvc.model.api.KmdbAPI
+import com.csb.koreamoviedb_mvc.model.data.ResultMovieClass
 import com.csb.koreamoviedb_mvc.tools.Filter
 import com.csb.koreamoviedb_mvc.tools.RemoveHighlightTags
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
-import java.net.URLEncoder
 
-class MovieModel(private val context: Context) {
+class MovieRepository(private val context: Context) {
 
     //api 호출변수
-    private val client = OkHttpClient.Builder().build()
     private val retrofit = Retrofit.Builder()
         .baseUrl(context.getString(R.string.baseUrl))
         .addConverterFactory(SimpleXmlConverterFactory.create())
-        .client(client)
         .build()
+
     private val service = retrofit.create(KmdbAPI::class.java)
 
     fun searchMovies(keyword: String, filter: Filter): List<ResultMovieClass> {
@@ -44,13 +40,14 @@ class MovieModel(private val context: Context) {
         }
 
         val response = call.execute()
-        if (!response.isSuccessful) throw Exception("호출 실패라고?: ${response.code()}")
+        if (!response.isSuccessful)
+            throw Exception("호출 실패라고?: ${response.code()}")
 
         val result = mutableListOf<ResultMovieClass>()
 
-        Log.d("rowsSize",response.body()?.result?.rows?.size.toString())
+        Log.d("rowsSize", response.body()?.result?.rows?.size.toString())
         response.body()?.result?.rows?.forEach { row ->
-            Log.d("response.body()","있음")
+            Log.d("response.body()", "있음")
             val directors =
                 row.directors?.directors?.map { RemoveHighlightTags(it.directorNm ?: "") }
                     ?: emptyList()
@@ -66,10 +63,10 @@ class MovieModel(private val context: Context) {
                     directors = directors,
                     actors = actors,
                     plots = plots,
-                    posters = row.posters ?:"",
-                    runtime = row.runtime ?:"",
-                    ratingGrade = row.rating ?:"",
-                    releaseDate = row.repRatDate ?:"",
+                    posters = row.posters ?: "",
+                    runtime = row.runtime ?: "",
+                    ratingGrade = row.rating ?: "",
+                    releaseDate = row.repRatDate ?: "",
                 )
             )
         }

@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvc.ui.theme
+package com.csb.koreamoviedb_mvc.view.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvc.component
+package com.csb.koreamoviedb_mvc.view.component
 
 import android.util.Log
 import androidx.compose.foundation.Image

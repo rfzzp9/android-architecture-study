@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvc.view
+package com.csb.koreamoviedb_mvc.view.screen
 
 import android.content.Context
 import android.os.Bundle
@@ -13,9 +13,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.csb.koreamoviedb_mvc.controller.MovieController
-import com.csb.koreamoviedb_mvc.model.MovieModel
+import com.csb.koreamoviedb_mvc.model.repository.MovieRepository
 import com.csb.koreamoviedb_mvc.tools.RootScreen
-import com.csb.koreamoviedb_mvc.ui.theme.KoreaMovieDB_MVCTheme
+import com.csb.koreamoviedb_mvc.view.theme.KoreaMovieDB_MVCTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ fun RootNavScreen(
 ){
     val rootScreenNavController = rememberNavController()
 
-    val movieController = MovieController(context, MovieModel(context))
+    val movieController = MovieController(context, MovieRepository(context))
 
     NavHost(
         navController = rootScreenNavController,

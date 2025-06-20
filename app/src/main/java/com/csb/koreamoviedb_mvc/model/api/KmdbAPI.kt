@@ -1,6 +1,6 @@
-package com.csb.koreamoviedb_mvc.model
+package com.csb.koreamoviedb_mvc.model.api
 
-import com.csb.koreamoviedb_mvc.model.dataclass.SearchResponse
+import com.csb.koreamoviedb_mvc.model.data.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

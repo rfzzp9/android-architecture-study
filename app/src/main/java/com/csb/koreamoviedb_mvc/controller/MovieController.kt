@@ -3,8 +3,8 @@ package com.csb.koreamoviedb_mvc.controller
 import android.content.Context
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import com.csb.koreamoviedb_mvc.model.MovieModel
-import com.csb.koreamoviedb_mvc.model.dataclass.ResultMovieClass
+import com.csb.koreamoviedb_mvc.model.repository.MovieRepository
+import com.csb.koreamoviedb_mvc.model.data.ResultMovieClass
 import com.csb.koreamoviedb_mvc.tools.Filter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class MovieController(
     val context: Context,
-    private val model: MovieModel
+    private val model: MovieRepository
 ) {
 
     // 검색대기 프로그래스 다이얼로그

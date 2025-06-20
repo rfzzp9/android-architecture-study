@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvc.model.dataclass
+package com.csb.koreamoviedb_mvc.model.data
 
 data class Movie(
     val title: String,

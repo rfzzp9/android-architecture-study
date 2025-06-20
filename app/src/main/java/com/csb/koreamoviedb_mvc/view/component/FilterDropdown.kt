@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvc.component
+package com.csb.koreamoviedb_mvc.view.component
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth

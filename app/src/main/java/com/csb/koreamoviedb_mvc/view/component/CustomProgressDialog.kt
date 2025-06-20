@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvc.component
+package com.csb.koreamoviedb_mvc.view.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

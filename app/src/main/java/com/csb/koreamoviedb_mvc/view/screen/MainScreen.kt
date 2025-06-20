@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvc.view
+package com.csb.koreamoviedb_mvc.view.screen
 
 import android.content.Context
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -31,9 +31,9 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.csb.koreamoviedb_mvc.component.CustomProgressDialog
-import com.csb.koreamoviedb_mvc.component.FilterDropdown
-import com.csb.koreamoviedb_mvc.component.MovieItem
+import com.csb.koreamoviedb_mvc.view.component.CustomProgressDialog
+import com.csb.koreamoviedb_mvc.view.component.FilterDropdown
+import com.csb.koreamoviedb_mvc.view.component.MovieItem
 import com.csb.koreamoviedb_mvc.controller.MovieController
 
 

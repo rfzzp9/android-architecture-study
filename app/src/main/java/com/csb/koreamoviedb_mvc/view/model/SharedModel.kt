@@ -1,11 +1,10 @@
-package com.csb.koreamoviedb_mvc.view
+package com.csb.koreamoviedb_mvc.view.model
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.csb.koreamoviedb_mvc.model.dataclass.ResultMovieClass
-
+import com.csb.koreamoviedb_mvc.model.data.ResultMovieClass
 
 class SharedModel : ViewModel() {
     var resultMovieClass by mutableStateOf(

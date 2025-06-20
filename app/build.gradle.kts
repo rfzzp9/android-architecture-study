@@ -78,7 +78,7 @@ dependencies {
     //shimmer
     implementation ("com.valentinilk.shimmer:compose-shimmer:1.0.5")
 
-    //네비게이션
+    //screen네비게이션
     implementation("androidx.navigation:navigation-compose:2.7.3")
     implementation("androidx.compose.material:material:1.8.2")
 

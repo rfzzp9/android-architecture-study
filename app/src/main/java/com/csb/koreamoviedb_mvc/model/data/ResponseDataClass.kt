@@ -1,9 +1,8 @@
-package com.csb.koreamoviedb_mvc.model.dataclass
+package com.csb.koreamoviedb_mvc.model.data
 
 import org.simpleframework.xml.Attribute
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.ElementList
-import org.simpleframework.xml.Path
 import org.simpleframework.xml.Root
 
 //루트
@@ -58,7 +57,7 @@ data class Row(
     @field:Element(name = "rating", required = false)
     var rating: String? = null,
 
-    //등급
+    //상영시간
     @field:Element(name = "runtime", required = false)
     var runtime: String? = null,
 
