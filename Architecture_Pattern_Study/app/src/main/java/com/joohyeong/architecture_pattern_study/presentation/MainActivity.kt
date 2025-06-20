@@ -1,4 +1,4 @@
-package com.joohyeong.architecture_pattern_study
+package com.joohyeong.architecture_pattern_study.presentation
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

@@ -1,4 +1,4 @@
-package com.joohyeong.architecture_pattern_study
+package com.joohyeong.architecture_pattern_study.presentation
 
 import android.content.Context
 import android.content.Intent
