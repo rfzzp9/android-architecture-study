@@ -1,4 +1,4 @@
-package com.joohyeong.architecture_pattern_study.presentation
+package com.joohyeong.architecture_pattern_study.presentation.moviedetail
 
 import android.content.Context
 import android.content.Intent
@@ -10,13 +10,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMovieDetailBinding
 import com.joohyeong.architecture_pattern_study.domain.MovieDetail
-import com.joohyeong.architecture_pattern_study.domain.MovieRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class MovieDetailActivity : AppCompatActivity() {
+class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
     private val binding by lazy { ActivityMovieDetailBinding.inflate(layoutInflater) }
+
+    private val presenter by lazy { MovieDetailPresenter(view = this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,10 +23,11 @@ class MovieDetailActivity : AppCompatActivity() {
 
         val movieId = intent.getStringExtra(EXTRA_MOVIE_ID)
             ?: throw IllegalArgumentException("Movie ID is required")
-        CoroutineScope(Dispatchers.Main).launch {
-            val movieDetail = MovieRepository.fetchMovieDetailById(movieId)
-            bindMovieDetail(movieDetail)
-        }
+        presenter.loadMovieDetail(movieId)
+    }
+
+    override fun showMovieDetail(movieDetail: MovieDetail) {
+        bindMovieDetail(movieDetail)
     }
 
     private fun bindMovieDetail(movieDetail: MovieDetail?) {
