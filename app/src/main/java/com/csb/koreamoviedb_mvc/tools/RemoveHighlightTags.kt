@@ -1,0 +1,9 @@
+package com.csb.koreamoviedb_mvc.tools
+
+//하이라이팅태그제거
+//<!HS>: Highlight Start
+//
+//<!HE>: Highlight End
+fun RemoveHighlightTags(input: String): String {
+    return input.replace("<!HS>", "").replace("<!HE>", "")
+}
