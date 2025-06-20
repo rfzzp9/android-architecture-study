@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
+import com.example.mvc_yongho.R
 import com.example.mvc_yongho.databinding.ActivityMainBinding
 import com.example.mvc_yongho.model.repository.MovieRepository
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         val query = binding.searchInputEditText.text?.toString()?.trim()
 
         if (query.isNullOrEmpty()) {
-            Toast.makeText(this@MainActivity, "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, R.string.hint_search_movie_title, Toast.LENGTH_SHORT).show()
             return
         }
 
