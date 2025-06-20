@@ -8,17 +8,19 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import androidx.lifecycle.lifecycleScope
 import com.example.mvc_yongho.databinding.ActivityMainBinding
+import com.example.mvc_yongho.model.data.MovieInfo
 import com.example.mvc_yongho.model.repository.MovieRepository
+import com.example.mvc_yongho.presenter.MainContract
+import com.example.mvc_yongho.presenter.MainPresenter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.View {
     private lateinit var binding: ActivityMainBinding
     private lateinit var movieAdapter: MovieAdapter
+    private lateinit var presenter: MainContract.Presenter
 
     @Inject
     lateinit var movieRepository: MovieRepository
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        presenter = MainPresenter(movieRepository, this)
         setContentView(binding.root)
 
         setupViews()
@@ -58,15 +61,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun performSearch() {
-        val query = binding.searchInputEditText.text?.toString()?.trim()
-
-        if (query.isNullOrEmpty()) {
-            Toast.makeText(this@MainActivity, "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
+        val query = binding.searchInputEditText.text?.toString()?.trim() ?: ""
         hideKeyboard()
-        searchMovies(query)
+        presenter.searchMovies(title = query)
     }
 
     private fun hideKeyboard() {
@@ -74,17 +71,18 @@ class MainActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(binding.searchInputEditText.windowToken, 0)
     }
 
-    private fun searchMovies(title: String) {
-        lifecycleScope.launch {
-            movieRepository.searchMovies(title = title)
-                .onSuccess { movies ->
-                    movieAdapter.submitList(movies)
-                }
-                .onFailure { exception ->
-                    movieAdapter.submitList(emptyList())
-                    Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
-                }
-        }
+    override fun showMovies(movies: List<MovieInfo>) {
+        movieAdapter.submitList(movies)
+    }
+
+    override fun showError(message: String) {
+        movieAdapter.submitList(emptyList())
+        Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
     }
 
 }
