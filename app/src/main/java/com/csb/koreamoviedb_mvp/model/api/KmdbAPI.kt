@@ -19,3 +19,4 @@ interface KmdbAPI {
         @Query("sort") sort: String? = "prodYear,1"
     ): Call<SearchResponse>
 }
+
