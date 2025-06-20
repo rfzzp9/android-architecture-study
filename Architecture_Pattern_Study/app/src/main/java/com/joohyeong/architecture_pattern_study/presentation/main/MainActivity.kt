@@ -1,4 +1,4 @@
-package com.joohyeong.architecture_pattern_study.presentation
+package com.joohyeong.architecture_pattern_study.presentation.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,11 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMainBinding
-import com.joohyeong.architecture_pattern_study.domain.MovieRepository
 import com.joohyeong.architecture_pattern_study.domain.Movies
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.joohyeong.architecture_pattern_study.presentation.moviedetail.MovieDetailActivity
 
 class MainActivity : AppCompatActivity(), MainContract.View {
     private val binding by lazy {

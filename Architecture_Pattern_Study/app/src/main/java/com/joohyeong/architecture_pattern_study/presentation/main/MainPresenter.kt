@@ -1,7 +1,6 @@
-package com.joohyeong.architecture_pattern_study.presentation
+package com.joohyeong.architecture_pattern_study.presentation.main
 
 import com.joohyeong.architecture_pattern_study.domain.MovieRepository
-import com.joohyeong.architecture_pattern_study.domain.Movies
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

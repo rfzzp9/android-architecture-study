@@ -1,4 +1,4 @@
-package com.joohyeong.architecture_pattern_study.presentation
+package com.joohyeong.architecture_pattern_study.presentation.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
