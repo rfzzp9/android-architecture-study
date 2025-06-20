@@ -38,7 +38,5 @@ data class MovieDataDTO(
     @SerialName("genre")
     val genre: String,
     @SerialName("kmdbUrl")
-    val kmdbUrl: String,
-    @SerialName("posters")
-    val posters: String
+    val kmdbUrl: String
 )

@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseDTO(
     @SerialName("Query")
-    val query: String,
+    val query: String? = null,
     @SerialName("KMAQuery")
-    val kmaQuery: String,
+    val kmaQuery: String? = null,
     @SerialName("TotalCount")
-    val totalCount: Int,
+    val totalCount: Int? = null,
     @SerialName("Data")
     val data: List<ColumnDTO>
 )
