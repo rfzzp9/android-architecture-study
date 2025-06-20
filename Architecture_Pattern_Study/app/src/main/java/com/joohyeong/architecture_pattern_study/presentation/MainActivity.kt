@@ -12,12 +12,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.View {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-
-
+    private val presenter by lazy {
+        MainPresenter(view = this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchMovies() {
-        CoroutineScope(Dispatchers.Main).launch {
-            val movies = MovieRepository.fetchMovies()
-            initMovieAdapter(movies)
-        }
+        presenter.loadMovies()
     }
 
     private fun applySystemBarsPadding() {
@@ -43,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initMovieAdapter(movies: Movies) {
+    override fun showMovies(movies: Movies) {
         binding.recyclerMovie.adapter = MovieAdapter(
             movies = movies,
             onMovieClick = {
