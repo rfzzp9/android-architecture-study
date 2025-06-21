@@ -21,7 +21,8 @@ data class MovieInfo(
     @SerialName("runtime") val runtime: String,
     @SerialName("rating") val rating: String,
     @SerialName("genre") val genre: String,
-    @SerialName("kmdbUrl") val kmdbUrl: String
+    @SerialName("kmdbUrl") val kmdbUrl: String,
+    @SerialName("posters") val posters: String
 ) {
     val cleanTitle: String
         get() = title
@@ -37,4 +38,7 @@ data class MovieInfo(
 
     val runtimeWithMinutes: String
         get() = if (runtime.isNotEmpty()) "${runtime}분" else "정보 없음"
+
+    val posterUrl: String
+        get() = posters.split("|").firstOrNull() ?: ""
 }

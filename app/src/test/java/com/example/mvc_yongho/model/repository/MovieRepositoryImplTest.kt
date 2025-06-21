@@ -46,7 +46,8 @@ class MovieRepositoryImplTest {
             runtime = "162",
             rating = "12세관람가",
             genre = "액션,SF,어드벤처",
-            kmdbUrl = ""
+            kmdbUrl = "",
+            posters = "",
         )
         val mockResponse = KmdbResponse(
             query = "",
