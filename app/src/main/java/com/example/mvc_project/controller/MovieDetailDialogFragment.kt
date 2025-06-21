@@ -121,8 +121,6 @@ class MovieDetailDialogFragment : DialogFragment() {
     }
 
     companion object {
-        private const val ARG_MOVIE_DATA = "movie_data"
-
         fun newInstance(movieData: MovieUiState): MovieDetailDialogFragment {
             val fragment = MovieDetailDialogFragment()
             val args = Bundle()
@@ -130,7 +128,6 @@ class MovieDetailDialogFragment : DialogFragment() {
             args.putString("movie_poster", movieData.moviePoster)
             args.putString("movie_running_time", movieData.movieRunningTime)
             args.putString("movie_grade", movieData.movieGrade)
-
             args.putString("actor_nm", movieData.actorName)
             args.putString("director", movieData.director)
             args.putString("plot_text", movieData.plotText)

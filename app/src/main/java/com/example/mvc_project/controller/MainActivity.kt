@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var movieAdapter: MovieAdapter
     private lateinit var apiService: ApiService
     private lateinit var movieListRemoteRepository: MovieListRemoteRepository
-    private var onMovieListFinishListener: ((MovieUiState) -> Unit)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +43,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() = with(binding) {
         movieAdapter = MovieAdapter(
-            onMovieListFinishListener = onMovieListFinishListener
+            onMovieListFinishListener = { movieListItem ->
+                val movieDetailDialogFragment = MovieDetailDialogFragment.newInstance(movieListItem)
+                movieDetailDialogFragment.show(supportFragmentManager, MovieDetailDialogFragment::class.java.name)
+            }
         )
 
         rvMovieList.apply {
