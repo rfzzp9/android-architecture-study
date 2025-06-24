@@ -10,12 +10,12 @@ object MovieRepository {
     private val movieService = ApiClient.client.create(MovieService::class.java)
     private val movieCache = mutableListOf<MovieEntity>()
 
-    suspend fun fetchMovies(): Result<Movies> {
+    suspend fun fetchMovies(): Result<List<Movie>> {
         ensureMovieCache()
             .onFailure { return Result.failure(it) }
 
         return Result.success(
-            Movies(values = movieCache.map { it.toMovie() })
+            movieCache.map { it.toMovie() }
         )
     }
 

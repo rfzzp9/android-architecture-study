@@ -8,7 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMainBinding
-import com.joohyeong.architecture_pattern_study.domain.Movies
+import com.joohyeong.architecture_pattern_study.domain.Movie
 import com.joohyeong.architecture_pattern_study.presentation.moviedetail.MovieDetailActivity
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         }
     }
 
-    override fun showMovies(movies: Movies) {
+    override fun showMovies(movies: List<Movie>) {
         binding.recyclerMovie.adapter = MovieAdapter(
             movies = movies,
             onMovieClick = {
