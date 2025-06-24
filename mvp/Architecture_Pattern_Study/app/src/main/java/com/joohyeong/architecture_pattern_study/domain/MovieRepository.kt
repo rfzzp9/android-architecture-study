@@ -10,27 +10,38 @@ object MovieRepository {
     private val movieService = ApiClient.client.create(MovieService::class.java)
     private val movieCache = mutableListOf<MovieEntity>()
 
-    suspend fun fetchMovies(): Movies {
-        if (movieCache.isEmpty()) {
-            movieCache.addAll(
-                movieService.fetchMovies().body()
-                    ?.data?.lastOrNull()?.result ?: emptyList()
-            )
-        }
+    suspend fun fetchMovies(): Result<Movies> {
+        ensureMovieCache()
+            .onFailure { return Result.failure(it) }
 
-        return Movies(values = movieCache.map { entity ->
-            entity.toMovie()
-        })
+        return Result.success(
+            Movies(values = movieCache.map { it.toMovie() })
+        )
     }
 
-    suspend fun fetchMovieDetailById(id: String): MovieDetail? {
-        if (movieCache.isEmpty()) {
-            movieCache.addAll(
-                movieService.fetchMovies().body()
-                    ?.data?.lastOrNull()?.result ?: emptyList()
-            )
+    suspend fun fetchMovieDetailById(id: String): Result<MovieDetail> {
+        ensureMovieCache()
+            .onFailure { return Result.failure(it) }
+
+        return Result.success(
+            movieCache.find { it.id == id }?.toMovieDetail()
+                ?: return Result.failure(IllegalStateException("Movie not found"))
+        )
+    }
+
+    private suspend fun ensureMovieCache(): Result<Unit> {
+        if (movieCache.isNotEmpty()) return Result.success(Unit)
+
+        val response = movieService.fetchMovies()
+        if (!response.isSuccessful) {
+            return Result.failure(IllegalStateException("Failed to fetch movies"))
         }
 
-        return movieCache.find { it.id == id }?.toMovieDetail()
+        val movies = response.body()
+            ?.data?.lastOrNull()?.result ?: emptyList()
+
+        movieCache.addAll(movies)
+
+        return Result.success(Unit)
     }
 }
