@@ -5,6 +5,7 @@ import com.joohyeong.architecture_pattern_study.domain.MovieDetail
 interface MovieDetailContract {
     interface View {
         fun showMovieDetail(movieDetail: MovieDetail)
+        fun showLoadMovieDetailError()
     }
 
     interface Presenter {

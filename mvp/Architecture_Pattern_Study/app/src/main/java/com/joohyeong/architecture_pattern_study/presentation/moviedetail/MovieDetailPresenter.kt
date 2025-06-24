@@ -17,6 +17,8 @@ class MovieDetailPresenter(
                 view.showMovieDetail(
                     movieDetail = movieDetail
                 )
+            } else {
+                view.showLoadMovieDetailError()
             }
         }
     }
