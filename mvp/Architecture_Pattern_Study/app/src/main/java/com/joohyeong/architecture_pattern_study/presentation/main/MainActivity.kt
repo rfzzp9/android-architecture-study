@@ -1,10 +1,12 @@
 package com.joohyeong.architecture_pattern_study.presentation.main
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMainBinding
 import com.joohyeong.architecture_pattern_study.domain.Movies
 import com.joohyeong.architecture_pattern_study.presentation.moviedetail.MovieDetailActivity
@@ -45,5 +47,13 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                 startActivity(MovieDetailActivity.newIntent(context = this, movieId = it))
             }
         )
+    }
+
+    override fun showLoadMoviesError() {
+        Toast.makeText(
+            this,
+            getString(R.string.error_message_load_movies),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

@@ -10,9 +10,13 @@ class MainPresenter(
 ) : MainContract.Presenter {
     override fun loadMovies() {
         CoroutineScope(Dispatchers.Main).launch {
-            val movies = MovieRepository.fetchMovies()
+            val result = MovieRepository.fetchMovies()
+            if (result.isFailure) {
+                // Handle error case, e.g., show a message to the user
+                return@launch view.showLoadMoviesError()
+            }
             view.showMovies(
-                movies = movies
+                movies = result.getOrNull() ?: return@launch view.showLoadMoviesError()
             )
         }
     }

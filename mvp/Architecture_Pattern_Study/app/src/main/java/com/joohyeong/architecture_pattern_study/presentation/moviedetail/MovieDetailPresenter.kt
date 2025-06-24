@@ -12,9 +12,11 @@ class MovieDetailPresenter(
 
     override fun loadMovieDetail(movieId: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            val movieDetail = MovieRepository.fetchMovieDetailById(movieId)
-            if(movieDetail.isSuccess) {
-                view.showMovieDetail(movieDetail.getOrNull() ?: return@launch)
+            val result = MovieRepository.fetchMovieDetailById(movieId)
+            if (result.isSuccess) {
+                view.showMovieDetail(
+                    result.getOrNull() ?: return@launch view.showLoadMovieDetailError()
+                )
             } else {
                 view.showLoadMovieDetailError()
             }
