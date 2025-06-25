@@ -7,8 +7,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 
 object RetrofitInstance {
-    private const val BASE_URL = "http://api.koreafilm.or.kr/"
-
     fun getInstance(): Retrofit {
         val networkJson = Json { ignoreUnknownKeys = true }
         return Retrofit.Builder()
@@ -16,5 +14,4 @@ object RetrofitInstance {
             .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
             .build()
     }
-
 }
