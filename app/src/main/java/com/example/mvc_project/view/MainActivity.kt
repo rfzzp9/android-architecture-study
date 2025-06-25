@@ -23,7 +23,15 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var movieAdapter: MovieAdapter
-    private lateinit var presenter: MainContract.Presenter
+    private val presenter: MainContract.Presenter by lazy {
+        val apiService = RetrofitInstance.getInstance().create(ApiService::class.java)
+        val dataSource = MovieListRemoteDataSource(apiService)
+        val repository = MovieListRemoteRepository(dataSource)
+        val useCase = GetMovieListUseCase(repository)
+        MainPresenter(useCase).also { presenter ->
+            presenter.attachView(this)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +43,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        setupPresenter()
         initViews()
         presenter.loadMovieList()
-    }
-
-    private fun setupPresenter() {
-        val apiService = RetrofitInstance.getInstance().create(ApiService::class.java)
-        val dataSource = MovieListRemoteDataSource(apiService)
-        val repository = MovieListRemoteRepository(dataSource)
-        val useCase = GetMovieListUseCase(repository)
-        presenter = MainPresenter(useCase)
-        presenter.attachView(this)
     }
 
     private fun initViews() = with(binding) {
