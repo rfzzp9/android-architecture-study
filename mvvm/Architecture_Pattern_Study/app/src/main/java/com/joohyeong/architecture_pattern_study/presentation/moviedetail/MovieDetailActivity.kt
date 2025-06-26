@@ -4,35 +4,53 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMovieDetailBinding
 import com.joohyeong.architecture_pattern_study.domain.MovieDetail
+import kotlinx.coroutines.launch
 
-class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
+class MovieDetailActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMovieDetailBinding.inflate(layoutInflater) }
+    private val viewModel: MovieDetailViewModel by viewModels()
 
-    private val presenter by lazy { MovieDetailPresenter(view = this) }
+    private val movieId: String by lazy {
+        intent.getStringExtra(EXTRA_MOVIE_ID)
+            ?: throw IllegalArgumentException("Movie ID is required")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         applySystemBarsPadding()
 
-        val movieId = intent.getStringExtra(EXTRA_MOVIE_ID)
-            ?: throw IllegalArgumentException("Movie ID is required")
-        presenter.loadMovieDetail(movieId)
+        initObserve()
+        viewModel.loadMovieDetail(movieId)
     }
 
-    override fun showMovieDetail(movieDetail: MovieDetail) {
+    private fun initObserve() {
+        lifecycleScope.launch {
+            viewModel.uiState.collect { uiState ->
+                when (uiState) {
+                    is MovieDetailUIState.Success -> showMovieDetail(uiState.movieDetail)
+                    MovieDetailUIState.Loading -> Unit
+                    is MovieDetailUIState.Error -> showLoadMovieDetailError()
+                }
+            }
+        }
+    }
+
+    private fun showMovieDetail(movieDetail: MovieDetail) {
         bindMovieDetail(movieDetail)
     }
 
-    override fun showLoadMovieDetailError() {
+    private fun showLoadMovieDetailError() {
         Toast.makeText(
             this,
             getString(R.string.error_message_load_movie_detail),

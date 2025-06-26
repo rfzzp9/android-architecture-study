@@ -34,10 +34,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.uiState.collect {
                 when (it) {
-                    is MainUIState.Success -> showMovies(it.news)
-                    MainUIState.Loading -> {
-                        // Show loading state if needed
-                    }
+                    is MainUIState.Success -> showMovies(it.movies)
+                    MainUIState.Loading -> Unit
                     is MainUIState.Error -> showLoadMoviesError()
                 }
             }
