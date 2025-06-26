@@ -3,21 +3,23 @@ package com.joohyeong.architecture_pattern_study.presentation.main
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMainBinding
 import com.joohyeong.architecture_pattern_study.domain.Movie
 import com.joohyeong.architecture_pattern_study.presentation.moviedetail.MovieDetailActivity
+import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private val presenter by lazy {
-        MainPresenter(view = this)
-    }
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +27,21 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(binding.root)
         applySystemBarsPadding()
 
-        fetchMovies()
+        initObserve()
     }
 
-    private fun fetchMovies() {
-        presenter.loadMovies()
+    private fun initObserve() {
+        lifecycleScope.launch {
+            viewModel.uiState.collect {
+                when (it) {
+                    is MainUIState.Success -> showMovies(it.news)
+                    MainUIState.Loading -> {
+                        // Show loading state if needed
+                    }
+                    is MainUIState.Error -> showLoadMoviesError()
+                }
+            }
+        }
     }
 
     private fun applySystemBarsPadding() {
@@ -40,7 +52,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         }
     }
 
-    override fun showMovies(movies: List<Movie>) {
+    private fun showMovies(movies: List<Movie>) {
         binding.recyclerMovie.adapter = MovieAdapter(
             movies = movies,
             onMovieClick = {
@@ -49,7 +61,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         )
     }
 
-    override fun showLoadMoviesError() {
+    private fun showLoadMoviesError() {
         Toast.makeText(
             this,
             getString(R.string.error_message_load_movies),
