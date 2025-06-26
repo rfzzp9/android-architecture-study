@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.serialization)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.lifecylce.viewmodel)
+    implementation(libs.androidx.lifecylce.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
