@@ -8,6 +8,7 @@ import com.example.mvc_yongho.data.model.MovieInfo
 import com.example.mvc_yongho.data.model.Plots
 import com.example.mvc_yongho.data.repository.MovieRepositoryImpl
 import com.example.mvc_yongho.data.datasource.MovieDataSource
+import com.example.mvc_yongho.domain.model.Movie
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -47,6 +48,17 @@ class MovieRepositoryImplTest {
             runtime = "162",
             rating = "12세관람가",
             genre = "액션,SF,어드벤처",
+            kmdbUrl = "",
+            posters = ""
+        )
+        val movie = Movie(
+            title = "아바타",
+            posterUrl = "",
+            directorName = "정보 없음",
+            prodYear = "2009",
+            nation = "미국",
+            runtimeWithMinutes = "162분",
+            plotText = "줄거리 정보가 없습니다.",
             kmdbUrl = ""
         )
         val mockResponse = KmdbResponse(
@@ -66,10 +78,9 @@ class MovieRepositoryImplTest {
 
         val result = movieRepository.searchMovies(title)
         val movieList = result.getOrNull()
-
         assertThat(result.isSuccess, `is`(true))
         assertThat(movieList?.size, `is`(1))
-        assertThat(movieList?.get(0), `is`(movieInfo1))
+        assertThat(movieList?.get(0), `is`(movie))
         verify(movieDataSource).searchMovies(title = title)
     }
 
@@ -86,8 +97,8 @@ class MovieRepositoryImplTest {
 
         val result = movieRepository.searchMovies(title)
 
-        assertThat(result.isFailure, `is`(true))
-        assertThat(result.exceptionOrNull()?.message, `is`("검색 결과가 없습니다."))
+        assertThat(result.isSuccess, `is`(true))
+        assertThat(result.getOrNull(), `is`(emptyList()))
         verify(movieDataSource).searchMovies(title = title)
     }
 
