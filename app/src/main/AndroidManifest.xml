@@ -13,13 +13,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Mvc_yongho"
+        android:theme="@style/Theme.AndroidStudy"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".view.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Mvc_yongho">
+            android:theme="@style/Theme.AndroidStudy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

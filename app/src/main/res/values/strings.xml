@@ -7,4 +7,5 @@
     <string name="label_nation">제작국가</string>
     <string name="label_runtime">상영시간</string>
     <string name="view_details_on_kmdb">KMDB에서 자세히 보기</string>
+    <string name="search_not_found">검색 결과가 없습니다.</string>
 </resources>

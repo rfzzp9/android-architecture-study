@@ -1,6 +1,6 @@
 package com.example.mvc_yongho.model.api
 
-import com.example.mvc_yongho.model.network.api.KmdbService
+import com.example.mvc_yongho.data.api.KmdbService
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType

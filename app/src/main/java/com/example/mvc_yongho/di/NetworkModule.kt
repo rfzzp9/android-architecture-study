@@ -1,7 +1,7 @@
 package com.example.mvc_yongho.di
 
 import com.example.mvc_yongho.BuildConfig
-import com.example.mvc_yongho.model.network.api.KmdbService
+import com.example.mvc_yongho.data.api.KmdbService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

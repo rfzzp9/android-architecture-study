@@ -1,7 +1,8 @@
 package com.example.mvc_yongho.model.datasource
 
-import com.example.mvc_yongho.model.data.KmdbResponse
-import com.example.mvc_yongho.model.network.api.KmdbService
+import com.example.mvc_yongho.data.model.KmdbResponse
+import com.example.mvc_yongho.data.api.KmdbService
+import com.example.mvc_yongho.data.datasource.MovieDataSourceImpl
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test

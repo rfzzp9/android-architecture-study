@@ -1,12 +1,13 @@
 package com.example.mvc_yongho.model.repository
 
-import com.example.mvc_yongho.model.data.Actors
-import com.example.mvc_yongho.model.data.CollectionData
-import com.example.mvc_yongho.model.data.Directors
-import com.example.mvc_yongho.model.data.KmdbResponse
-import com.example.mvc_yongho.model.data.MovieInfo
-import com.example.mvc_yongho.model.data.Plots
-import com.example.mvc_yongho.model.datasource.MovieDataSource
+import com.example.mvc_yongho.data.model.Actors
+import com.example.mvc_yongho.data.model.CollectionData
+import com.example.mvc_yongho.data.model.Directors
+import com.example.mvc_yongho.data.model.KmdbResponse
+import com.example.mvc_yongho.data.model.MovieInfo
+import com.example.mvc_yongho.data.model.Plots
+import com.example.mvc_yongho.data.repository.MovieRepositoryImpl
+import com.example.mvc_yongho.data.datasource.MovieDataSource
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
