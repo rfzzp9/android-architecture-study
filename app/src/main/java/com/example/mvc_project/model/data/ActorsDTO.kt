@@ -5,6 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ActorsDTO(
-    @SerialName("actor")
     val actor: List<ActorsDetailDTO> = emptyList()
 )

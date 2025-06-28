@@ -7,11 +7,13 @@ class MovieListRemoteDataSource(
     private val api: ApiService
 ) {
     suspend fun fetchMovieList(): ResponseDTO {
-        val response = api.fetchMovieList()
-        return (if (response.isSuccessful) {
-            response.body() ?: ResponseDTO
-        } else {
-            ResponseDTO
-        }) as ResponseDTO
+        return try {
+            val response = api.fetchMovieList()
+            response.body() ?: emptyResponseDTO()
+        } catch (e: Exception) {
+            emptyResponseDTO()
+        }
     }
+
+    private fun emptyResponseDTO() = ResponseDTO(data = emptyList())
 }

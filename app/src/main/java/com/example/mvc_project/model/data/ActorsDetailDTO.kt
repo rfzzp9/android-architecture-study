@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ActorsDetailDTO(
-    @SerialName("actorNm") val actorNm: String,
-    @SerialName("actorEnNm") val actorEnNm: String,
-    @SerialName("actorId") val actorId: String
+    val actorNm: String,
+    val actorEnNm: String,
+    val actorId: String
 )

@@ -5,6 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PlotsDTO(
-    @SerialName("plot")
     val plot: List<PlotsDetailDTO> = emptyList()
 )

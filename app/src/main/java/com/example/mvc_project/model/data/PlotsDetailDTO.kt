@@ -5,8 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PlotsDetailDTO(
-    @SerialName("plotLang")
     val plotLang: String,
-    @SerialName("plotText")
     val plotText: String
 )

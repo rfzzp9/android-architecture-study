@@ -5,10 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DirectorsDetailDTO(
-    @SerialName("directorNm")
     val directorNm: String,
-    @SerialName("directorEnNm")
     val directorEnNm: String,
-    @SerialName("directorId")
     val directorId: String,
 )

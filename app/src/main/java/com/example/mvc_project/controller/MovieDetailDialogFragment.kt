@@ -12,10 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.example.mvc_project.R
 import com.example.mvc_project.databinding.DialogMovieDetailBinding
 import kotlinx.coroutines.launch
 
@@ -38,10 +40,12 @@ class MovieDetailDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         dialog?.setCanceledOnTouchOutside(false)
         resizeDialogFragment()
-        restoreMovieData()
+        displayMovieDetails()
         initViews()
 
     }
+
+
 
     private fun resizeDialogFragment() {
         dialog?.window?.setBackgroundDrawable(android.graphics.Color.TRANSPARENT.toDrawable())
@@ -80,18 +84,48 @@ class MovieDetailDialogFragment : DialogFragment() {
         }
     }
 
-    private fun restoreMovieData() {
-        arguments?.let { args ->
-            movieList = MovieUiState(
-                movieName = args.getString("movie_name"),
-                moviePoster = args.getString("movie_poster"),
-                movieRunningTime = args.getString("movie_running_time"),
-                movieGrade = args.getString("movie_grade"),
-                actorName = args.getString("actor_nm"),
-                director = args.getString("director"),
-                plotText = args.getString("plot_text"),
-                prodYear = args.getString("prod_year")
-            )
+    private fun displayMovieDetails(movieDetailUiState: MovieDetailUiState) {
+        with(binding) {
+            tvMovieName.text = if(movieDetailUiState.movieName.isNotBlank()) {
+                movieDetailUiState.movieName
+            } else {
+                getString(R.string.no_movies_message)
+            }
+            tvMovieRunningTime.text = if(movieDetailUiState.movieRunningTime.isNotBlank()) {
+                movieDetailUiState.movieRunningTime
+            } else {
+                getString(R.string.no_movies_message)
+            }
+            tvMovieGrade.text = if(movieDetailUiState.movieGrade.isNotBlank()) {
+                movieDetailUiState.movieGrade
+            } else {
+                getString(R.string.no_movies_message)
+            }
+
+            tvMovieActors.text = if (movieDetailUiState.actorName.isNotBlank()) {
+                movieDetailUiState.actorName
+            } else {
+                getString(R.string.no_movies_message)
+            }
+
+            tvMovieDirector.text = if (movieDetailUiState.director.isNotBlank()) {
+                movieDetailUiState.director
+            } else {
+                getString(R.string.no_movies_message)
+            }
+
+            tvMoviePlot.text = if (movieDetailUiState.plotText.isNotBlank()) {
+                movieDetailUiState.plotText
+            } else {
+                getString(R.string.no_movies_message)
+            }
+
+            tvMovieReleaseDate.text = if (movieDetailUiState.prodYear.isNotBlank()) {
+                movieDetailUiState.prodYear
+            } else {
+                getString(R.string.no_movies_message)
+            }
+            loadMoviePoster(movieDetailUiState.moviePoster)
         }
     }
 
@@ -115,25 +149,37 @@ class MovieDetailDialogFragment : DialogFragment() {
         }
     }
 
+    private fun loadMoviePoster(posterUrl: String) {
+        if (posterUrl.isNotBlank()) {
+            Glide.with(requireContext())
+                .load(posterUrl)
+                .placeholder(R.drawable.loading)                     // 로딩 중 이미지
+                .error(R.drawable.warning)                      // 에러 시 이미지
+                .into(binding.ivMoviePoster)
+        } else {
+            binding.ivMoviePoster.setImageResource(R.drawable.warning)    //이미지 없을 경우 기본 이미지
+        }
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        dismiss()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     companion object {
+        private const val KEY_MOVIE = "movie_data"
+
         fun newInstance(movieData: MovieUiState): MovieDetailDialogFragment {
-            val fragment = MovieDetailDialogFragment()
-            val args = Bundle()
-            args.putString("movie_name", movieData.movieName)
-            args.putString("movie_poster", movieData.moviePoster)
-            args.putString("movie_running_time", movieData.movieRunningTime)
-            args.putString("movie_grade", movieData.movieGrade)
-            args.putString("actor_nm", movieData.actorName)
-            args.putString("director", movieData.director)
-            args.putString("plot_text", movieData.plotText)
-            args.putString("prod_year", movieData.prodYear)
-            fragment.arguments = args
-            return fragment
+            return MovieDetailDialogFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(KEY_MOVIE, movieData)
+                }
+            }
         }
     }
 }

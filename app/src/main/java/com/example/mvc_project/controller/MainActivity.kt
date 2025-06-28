@@ -38,12 +38,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         initViews()
-        initObservers()
+        setUpMovieList()
     }
 
     private fun initViews() = with(binding) {
         movieAdapter = MovieAdapter(
-            onMovieListFinishListener = { movieListItem ->
+            onMovieItemClick = { movieListItem ->
                 val movieDetailDialogFragment = MovieDetailDialogFragment.newInstance(movieListItem)
                 movieDetailDialogFragment.show(supportFragmentManager, MovieDetailDialogFragment::class.java.name)
             }
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             MovieListRemoteRepository(MovieListRemoteDataSource(getApiService()))
     }
 
-    private fun initObservers() {
+    private fun setUpMovieList() {
         lifecycleScope.launch {
             try {
                 val movies = movieListRemoteRepository.fetchMovieList()
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@MainActivity, "영화 목록을 불러오는데 실패했습니다.", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@MainActivity, R.string.no_data_message, Toast.LENGTH_SHORT)
                         .show()
                 }
             }

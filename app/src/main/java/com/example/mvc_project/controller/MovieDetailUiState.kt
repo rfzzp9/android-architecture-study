@@ -1,6 +1,6 @@
 package com.example.mvc_project.controller
 
-data class MovieUiState(
+data class MovieDetailUiState(
     val moviePoster: String = "",
     val movieName: String = "",
     val movieRunningTime: String = "",

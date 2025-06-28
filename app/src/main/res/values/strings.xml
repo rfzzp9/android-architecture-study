@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVC_Project</string>
+    <string name="no_data_message">영화 목록을 불러오는데 실패했습니다.</string>
+    <string name="no_movies_message">정보 없음</string>
 </resources>

@@ -5,6 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DirectorsDTO(
-    @SerialName("director")
     val director: List<DirectorsDetailDTO> = emptyList()
 )
