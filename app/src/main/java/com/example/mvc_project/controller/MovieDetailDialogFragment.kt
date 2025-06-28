@@ -18,6 +18,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.mvc_project.R
+import com.example.mvc_project.controller.mapper.toMovieDetailModel
 import com.example.mvc_project.databinding.DialogMovieDetailBinding
 import kotlinx.coroutines.launch
 
@@ -25,7 +26,6 @@ class MovieDetailDialogFragment : DialogFragment() {
 
     private var _binding: DialogMovieDetailBinding? = null
     private val binding get() = _binding!!
-    private var movieList: MovieUiState? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +40,7 @@ class MovieDetailDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         dialog?.setCanceledOnTouchOutside(false)
         resizeDialogFragment()
-        displayMovieDetails()
-        initViews()
+        loadMovieData()
 
     }
 
@@ -84,68 +83,59 @@ class MovieDetailDialogFragment : DialogFragment() {
         }
     }
 
-    private fun displayMovieDetails(movieDetailUiState: MovieDetailUiState) {
-        with(binding) {
-            tvMovieName.text = if(movieDetailUiState.movieName.isNotBlank()) {
-                movieDetailUiState.movieName
-            } else {
-                getString(R.string.no_movies_message)
-            }
-            tvMovieRunningTime.text = if(movieDetailUiState.movieRunningTime.isNotBlank()) {
-                movieDetailUiState.movieRunningTime
-            } else {
-                getString(R.string.no_movies_message)
-            }
-            tvMovieGrade.text = if(movieDetailUiState.movieGrade.isNotBlank()) {
-                movieDetailUiState.movieGrade
-            } else {
-                getString(R.string.no_movies_message)
-            }
-
-            tvMovieActors.text = if (movieDetailUiState.actorName.isNotBlank()) {
-                movieDetailUiState.actorName
-            } else {
-                getString(R.string.no_movies_message)
-            }
-
-            tvMovieDirector.text = if (movieDetailUiState.director.isNotBlank()) {
-                movieDetailUiState.director
-            } else {
-                getString(R.string.no_movies_message)
-            }
-
-            tvMoviePlot.text = if (movieDetailUiState.plotText.isNotBlank()) {
-                movieDetailUiState.plotText
-            } else {
-                getString(R.string.no_movies_message)
-            }
-
-            tvMovieReleaseDate.text = if (movieDetailUiState.prodYear.isNotBlank()) {
-                movieDetailUiState.prodYear
-            } else {
-                getString(R.string.no_movies_message)
-            }
-            loadMoviePoster(movieDetailUiState.moviePoster)
+    private fun loadMovieData() {
+        arguments?.getParcelable<MovieDetailUiState>(KEY_MOVIE)?.let { movie ->
+            displayMovieDetails(movie)
+        } ?: run {
+            showError(getString(R.string.no_data_message))
         }
     }
 
-    private fun initViews() = with(binding) {
+    private fun displayMovieDetails(movieDetailUiState: MovieDetailUiState) = with(binding) {
         lifecycleScope.launch {
-            movieList?.let { movie ->
-                tvMovieName.text = movie.movieName ?: "정보가 없습니다."
-                tvMovieRunningTime.text = "${movie.movieRunningTime}분" ?: "정보가 없습니다."
-                tvMovieGrade.text = movie.movieGrade ?: "정보가 없습니다."
-                tvMovieActors.text = movie.actorName ?: "정보가 없습니다."
-                tvMovieDirector.text = movie.director ?: "정보가 없습니다."
-                tvMoviePlot.text = movie.plotText ?: "정보가 없습니다."
-                tvMovieReleaseDate.text = movie.prodYear ?: "정보가 없습니다."
-
-                movie.moviePoster?.let { posterUrl ->
-                    Glide.with(requireContext())
-                        .load(posterUrl)
-                        .into(ivMoviePoster)
+            movieDetailUiState.let { movie ->
+                tvMovieName.text = if(movie.movieName.isNotBlank()) {
+                    movie.movieName
+                } else {
+                    getString(R.string.no_movies_message)
                 }
+                tvMovieRunningTime.text = if(movie.movieRunningTime.isNotBlank()) {
+                    movie.movieRunningTime
+                } else {
+                    getString(R.string.no_movies_message)
+                }
+                tvMovieGrade.text = if(movie.movieGrade.isNotBlank()) {
+                    movie.movieGrade
+                } else {
+                    getString(R.string.no_movies_message)
+                }
+
+                tvMovieActors.text = if (movie.actorName.isNotBlank()) {
+                    movie.actorName
+                } else {
+                    getString(R.string.no_movies_message)
+                }
+
+                tvMovieDirector.text = if (movie.director.isNotBlank()) {
+                    movie.director
+                } else {
+                    getString(R.string.no_movies_message)
+                }
+
+                tvMoviePlot.text = if (movie.plotText.isNotBlank()) {
+                    movie.plotText
+                } else {
+                    getString(R.string.no_movies_message)
+                }
+
+                tvMovieReleaseDate.text = if (movie.prodYear.isNotBlank()) {
+                    movie.prodYear
+                } else {
+                    getString(R.string.no_movies_message)
+                }
+                loadMoviePoster(movie.moviePoster)
             }
+
         }
     }
 
@@ -177,7 +167,7 @@ class MovieDetailDialogFragment : DialogFragment() {
         fun newInstance(movieData: MovieUiState): MovieDetailDialogFragment {
             return MovieDetailDialogFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(KEY_MOVIE, movieData)
+                    putParcelable(KEY_MOVIE, movieData.toMovieDetailModel())
                 }
             }
         }
