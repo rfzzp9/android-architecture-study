@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         rvMovieList.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = movieAdapter
         }
 
