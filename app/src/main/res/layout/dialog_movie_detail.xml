@@ -8,7 +8,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivMoviePoster"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="300dp"
         android:layout_marginStart="@dimen/margin_10"
         android:layout_marginTop="@dimen/margin_10"
         android:layout_marginEnd="@dimen/margin_10"
@@ -21,7 +21,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieName"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10"
         android:layout_marginEnd="@dimen/margin_10"
         android:gravity="center_vertical"
@@ -37,7 +37,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieActors"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10"
         android:layout_marginEnd="@dimen/margin_10"
         android:gravity="center_vertical"
@@ -53,7 +53,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieDirector"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10"
         android:layout_marginEnd="@dimen/margin_10"
         android:gravity="center_vertical"
@@ -69,7 +69,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMoviePlot"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10"
         android:layout_marginEnd="@dimen/margin_10"
         android:gravity="center_vertical"
@@ -85,7 +85,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieRunningTime"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10"
         android:layout_marginEnd="@dimen/margin_10"
         android:gravity="center_vertical"
@@ -101,7 +101,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieGrade"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10"
         android:layout_marginEnd="@dimen/margin_10"
         android:gravity="center_vertical"
@@ -117,7 +117,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieReleaseDate"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_10"
         android:layout_marginEnd="@dimen/margin_10"
         android:layout_marginBottom="@dimen/margin_10"
