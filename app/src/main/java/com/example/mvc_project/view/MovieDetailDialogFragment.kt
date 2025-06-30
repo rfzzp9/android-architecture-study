@@ -57,57 +57,39 @@ class MovieDetailDialogFragment : DialogFragment() {
             setCanceledOnTouchOutside(true)
             window?.apply {
                 setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-                addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+                setFlags(
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND,
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND
+                )
                 setDimAmount(0.6f)
             }
-        }
 
-        dialog?.setOnShowListener {
-            resizeDialog()
-        }
-    }
-
-    private fun resizeDialog() {
-        val displaySize = getAvailableDisplaySize(requireContext())
-        val targetWidth = (displaySize.x * 0.9f).toInt()
-        val targetHeight = (displaySize.y * 0.8f).toInt()
-
-        dialog?.window?.attributes?.apply {
-            width = targetWidth
-            height = targetHeight
-            dialog?.window?.attributes = this
+            setOnShowListener {
+                val dialogSize = getDialogSize()
+                window?.attributes = window?.attributes?.apply {
+                    width = dialogSize.x
+                    height = dialogSize.y
+                }
+            }
         }
     }
 
-    private fun getAvailableDisplaySize(context: Context): Point {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            getDisplaySizeForApiR(context)
+    private fun getDialogSize(): Point {
+        val windowManager = requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val displaySize = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val metrics = windowManager.currentWindowMetrics
+            Point(metrics.bounds.width(), metrics.bounds.height())
         } else {
-            getDisplaySizeForLegacy(context)
+            val size = Point()
+            @Suppress("DEPRECATION")
+            windowManager.defaultDisplay.getSize(size)
+            size
         }
-    }
 
-    @RequiresApi(Build.VERSION_CODES.R)
-    private fun getDisplaySizeForApiR(context: Context): Point {
-        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val metrics = windowManager.currentWindowMetrics
-        val windowInsets = metrics.windowInsets
-        val insets: android.graphics.Insets = windowInsets.getInsetsIgnoringVisibility(
-            WindowInsets.Type.navigationBars() or WindowInsets.Type.displayCutout()
+        return Point(
+            (displaySize.x * 0.9f).toInt(),
+            (displaySize.y * 0.8f).toInt()
         )
-
-        val width = metrics.bounds.width() - insets.left - insets.right
-        val height = metrics.bounds.height() - insets.top - insets.bottom
-        return Point(width, height)
-    }
-
-    private fun getDisplaySizeForLegacy(context: Context): Point {
-        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val display = windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
-        return size
     }
 
     private fun loadMovieData() {
@@ -128,52 +110,27 @@ class MovieDetailDialogFragment : DialogFragment() {
         }
     }
 
+    // 영화 상세 정보 표시 로직
     private fun displayMovieDetails(movieDetail: MovieDetailUiState) {
         with(binding) {
-            // 영화 기본 정보
-            tvMovieName.text = if (movieDetail.movieName.isNotBlank()) {
-                movieDetail.movieName
-            } else {
-                getString(R.string.no_information)
-            }
-
-            tvMovieRunningTime.text = if (movieDetail.movieRunningTime.isNotBlank()) {
-                "${movieDetail.movieRunningTime}분"
-            } else {
-                getString(R.string.no_information)
-            }
-
-            tvMovieGrade.text = if (movieDetail.movieGrade.isNotBlank()) {
-                movieDetail.movieGrade
-            } else {
-                getString(R.string.no_information)
-            }
-
-            tvMovieActors.text = if (movieDetail.actorName.isNotBlank()) {
-                movieDetail.actorName
-            } else {
-                getString(R.string.no_information)
-            }
-
-            tvMovieDirector.text = if (movieDetail.director.isNotBlank()) {
-                movieDetail.director
-            } else {
-                getString(R.string.no_information)
-            }
-
-            tvMoviePlot.text = if (movieDetail.plotText.isNotBlank()) {
-                movieDetail.plotText
-            } else {
-                getString(R.string.no_information)
-            }
-
-            tvMovieReleaseDate.text = if (movieDetail.prodYear.isNotBlank()) {
-                movieDetail.prodYear
-            } else {
-                getString(R.string.no_information)
-            }
+            setTextOrDefault(tvMovieName, movieDetail.movieName)
+            setTextOrDefault(tvMovieRunningTime, movieDetail.movieRunningTime, "분")
+            setTextOrDefault(tvMovieGrade, movieDetail.movieGrade)
+            setTextOrDefault(tvMovieActors, movieDetail.actorName)
+            setTextOrDefault(tvMovieDirector, movieDetail.director)
+            setTextOrDefault(tvMoviePlot, movieDetail.plotText)
+            setTextOrDefault(tvMovieReleaseDate, movieDetail.prodYear)
 
             loadMoviePoster(movieDetail.moviePoster)
+        }
+    }
+
+    // 각 텍스트뷰 설정 로직
+    private fun setTextOrDefault(textView: android.widget.TextView, text: String, suffix: String = "") {
+        textView.text = if (text.isNotBlank()) {
+            "$text$suffix"
+        } else {
+            getString(R.string.no_information)
         }
     }
 
@@ -182,11 +139,11 @@ class MovieDetailDialogFragment : DialogFragment() {
         if (posterUrl.isNotBlank()) {
             Glide.with(requireContext())
                 .load(posterUrl)
-                .placeholder(android.R.drawable.ic_menu_gallery)                     // 로딩 중 이미지
-                .error(android.R.drawable.ic_menu_report_image)                      // 에러 시 이미지
+                .placeholder(R.drawable.placeholder_movie_poster)                     // 로딩 중 이미지
+                .error(R.drawable.error_movie_poster)                                 // 에러 시 이미지
                 .into(binding.ivMoviePoster)
         } else {
-            binding.ivMoviePoster.setImageResource(R.drawable.empty_movie_poster)    //이미지 없을 경우 기본 이미지
+            binding.ivMoviePoster.setImageResource(R.drawable.empty_movie_poster)     //이미지 없을 경우 기본 이미지
         }
     }
 
