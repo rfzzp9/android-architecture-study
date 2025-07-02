@@ -65,12 +65,22 @@ class MovieDetailActivity : AppCompatActivity() {
                 .apply(RequestOptions.centerCropTransform())
                 .into(imageMoviePoster)
             textMovieTitle.text = movieDetail.title
-            textMovieDirector.text = "감독: ${movieDetail.directors?.joinToString(", ")}"
-            textMovieActors.text = "배우: ${movieDetail.actors?.joinToString(", ")}"
-            textMovieSynopsis.text = "줄거리: ${movieDetail.plot}"
-            textMovieRuntime.text = "상영 시간: ${movieDetail.runtime}분"
-            textMovieRating.text = "관람 등급: ${movieDetail.rating}"
-            textMovieReleaseDate.text = "개봉일: ${movieDetail.releaseDate}"
+            textMovieDirector.text = getString(
+                R.string.text_movie_detail_director_prefix,
+                movieDetail.directors.joinToString(", ")
+            )
+            textMovieActors.text = getString(
+                R.string.text_movie_detail_actor_prefix,
+                movieDetail.actors.joinToString(", ")
+            )
+            textMovieSynopsis.text =
+                getString(R.string.text_movie_detail_synopsis_prefix, movieDetail.plot)
+            textMovieRuntime.text =
+                getString(R.string.text_movie_detail_runtime_prefix, movieDetail.runtime)
+            textMovieRating.text =
+                getString(R.string.text_movie_detail_rating_prefix, movieDetail.rating)
+            textMovieReleaseDate.text =
+                getString(R.string.text_movie_detail_release_date_prefix, movieDetail.releaseDate)
         }
     }
 
