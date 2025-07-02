@@ -58,19 +58,19 @@ class MovieDetailActivity : AppCompatActivity() {
         ).show()
     }
 
-    private fun bindMovieDetail(movieDetail: MovieDetail?) {
+    private fun bindMovieDetail(movieDetail: MovieDetail) {
         with(binding) {
             Glide.with(this@MovieDetailActivity)
-                .load(movieDetail?.posterUrl)
+                .load(movieDetail.posterUrl)
                 .apply(RequestOptions.centerCropTransform())
                 .into(imageMoviePoster)
-            textMovieTitle.text = movieDetail?.title
-            textMovieDirector.text = "감독: ${movieDetail?.directors?.joinToString(", ")}"
-            textMovieActors.text = "배우: ${movieDetail?.actors?.joinToString(", ")}"
-            textMovieSynopsis.text = "줄거리: ${movieDetail?.plot}"
-            textMovieRuntime.text = "상영 시간: ${movieDetail?.runtime}분"
-            textMovieRating.text = "관람 등급: ${movieDetail?.rating}"
-            textMovieReleaseDate.text = "개봉일: ${movieDetail?.releaseDate}"
+            textMovieTitle.text = movieDetail.title
+            textMovieDirector.text = "감독: ${movieDetail.directors?.joinToString(", ")}"
+            textMovieActors.text = "배우: ${movieDetail.actors?.joinToString(", ")}"
+            textMovieSynopsis.text = "줄거리: ${movieDetail.plot}"
+            textMovieRuntime.text = "상영 시간: ${movieDetail.runtime}분"
+            textMovieRating.text = "관람 등급: ${movieDetail.rating}"
+            textMovieReleaseDate.text = "개봉일: ${movieDetail.releaseDate}"
         }
     }
 
