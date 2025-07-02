@@ -62,7 +62,8 @@ class MovieDetailActivity : AppCompatActivity() {
         with(binding) {
             Glide.with(this@MovieDetailActivity)
                 .load(movieDetail.posterUrl)
-                .apply(RequestOptions.centerCropTransform())
+                .apply(RequestOptions.centerCropTransform()).fallback(R.drawable.image_error)
+                .error(R.drawable.image_error)
                 .into(imageMoviePoster)
             textMovieTitle.text = movieDetail.title
             textMovieDirector.text = getString(

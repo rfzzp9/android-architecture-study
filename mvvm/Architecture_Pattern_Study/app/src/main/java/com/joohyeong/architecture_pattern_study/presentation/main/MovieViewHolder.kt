@@ -32,6 +32,8 @@ class MovieViewHolder(
             Glide.with(itemView)
                 .load(movie.posterUrl)
                 .apply(RequestOptions.centerCropTransform())
+                .fallback(R.drawable.image_error)
+                .error(R.drawable.image_error)
                 .into(imageMoviePoster)
         }
     }
