@@ -19,16 +19,16 @@ class MainViewModel : ViewModel() {
     private fun loadMovies() {
         viewModelScope.launch {
             val result = MovieRepository.fetchMovies()
-            if (result.isFailure) {
+            result.onSuccess {
+                _uiState.update {
+                    MainUIState.Success(
+                        movies = result.getOrNull() ?: emptyList()
+                    )
+                }
+            }.onFailure {
                 _uiState.update {
                     MainUIState.Error(result.exceptionOrNull() ?: Throwable("Unknown error"))
                 }
-                return@launch
-            }
-            _uiState.update {
-                MainUIState.Success(
-                    movies = result.getOrNull() ?: emptyList()
-                )
             }
         }
     }

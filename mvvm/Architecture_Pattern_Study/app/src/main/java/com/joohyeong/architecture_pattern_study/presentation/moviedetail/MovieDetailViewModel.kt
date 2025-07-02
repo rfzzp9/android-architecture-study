@@ -18,15 +18,16 @@ class MovieDetailViewModel : ViewModel() {
     fun loadMovieDetail(movieId: String) {
         viewModelScope.launch {
             val result = MovieRepository.fetchMovieDetailById(movieId)
-            if (result.isFailure) {
+            result.onSuccess {
+                _uiState.update {
+                    MovieDetailUIState.Success(
+                        movieDetail = result.getOrNull() ?: return@launch
+                    )
+                }
+            }.onFailure {
                 _uiState.update {
                     MovieDetailUIState.Error(result.exceptionOrNull() ?: Throwable("Unknown error"))
                 }
-            }
-            _uiState.update {
-                MovieDetailUIState.Success(
-                    movieDetail = result.getOrNull() ?: return@launch
-                )
             }
         }
     }
