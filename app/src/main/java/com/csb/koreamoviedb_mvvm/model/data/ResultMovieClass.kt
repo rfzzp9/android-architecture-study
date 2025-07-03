@@ -1,5 +1,7 @@
 package com.csb.koreamoviedb_mvvm.model.data
 
+import java.io.Serializable
+
 
 data class ResultMovieClass(
     //제목
@@ -20,4 +22,4 @@ data class ResultMovieClass(
     val ratingGrade:String,
     //대표개봉일
     val releaseDate:String
-)
+) : Serializable

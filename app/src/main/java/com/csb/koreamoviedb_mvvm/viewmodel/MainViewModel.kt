@@ -4,13 +4,16 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.csb.koreamoviedb_mvvm.intent.SearchIntent
 import com.csb.koreamoviedb_mvvm.model.data.ResultMovieClass
 import com.csb.koreamoviedb_mvvm.model.repository.MovieRepository
+import com.csb.koreamoviedb_mvvm.state.SearchState
 import com.csb.koreamoviedb_mvvm.tools.Filter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,38 +22,32 @@ class MainViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel() {
 
-    //검색필터링
-    private val _selectedFilter = MutableStateFlow(Filter.FILTER_ALL)
-    val selectedFilter: StateFlow<Filter> = _selectedFilter.asStateFlow()
-    fun updateSelectedFilter(filter: Filter) {
-        _selectedFilter.value = filter
+    private val _uiState = MutableStateFlow(SearchState())
+    val uiState: StateFlow<SearchState> = _uiState.asStateFlow()
+
+    //사용자 입력을 인텐트로 전달
+    fun processIntent(intent: SearchIntent) {
+        when (intent) {
+            is SearchIntent.EnterText -> {
+                _uiState.update { it.copy(searchText = intent.text) }
+            }
+            is SearchIntent.SelectFilter -> {
+                _uiState.update { it.copy(selectedFilter = intent.filter) }
+            }
+            is SearchIntent.ClickSearchButton -> {
+                search()
+            }
+        }
     }
 
-    //검색어
-    private val _searchText = MutableStateFlow("")
-    val searchText: StateFlow<String> = _searchText.asStateFlow()
-    fun updateSearchText(text: String) {
-        _searchText.value = text
-    }
-
-    //검색된 결과 리스트
-    private val _resultList = MutableStateFlow<List<ResultMovieClass>>(emptyList())
-    val resultList: StateFlow<List<ResultMovieClass>> = _resultList.asStateFlow()
-
-    //검색완료
-    private val _hasSearched = MutableStateFlow(false)
-    val hasSearched: StateFlow<Boolean> = _hasSearched.asStateFlow()
-
-    //다이얼로그
-    private var _dialogIsShowing = mutableStateOf(false)
-    val dialogIsShowing: State<Boolean> = _dialogIsShowing
-
-    //검색 프로세스
-    fun search() {
+    private fun search() {
         viewModelScope.launch {
-            _dialogIsShowing.value = true
-            val query = searchText.value.trim()
-            val filter = selectedFilter.value
+            _uiState.update { it.copy(isLoading = true) }
+
+            //현재상태
+            val current = _uiState.value
+            val query = current.searchText.trim()
+            val filter = current.selectedFilter
 
             val result = movieRepository.getMovies(
                 query = if (filter == Filter.FILTER_ALL) query else null,
@@ -59,9 +56,14 @@ class MainViewModel @Inject constructor(
                 director = if (filter == Filter.FILTER_DIRECTOR) query else null
             )
 
-            _resultList.value = result
-            _hasSearched.value = true
-            _dialogIsShowing.value = false
+            //최종 ui 업데이트
+            _uiState.update {
+                it.copy(
+                    resultList = result,
+                    hasSearched = true,
+                    isLoading = false
+                )
+            }
         }
     }
 }

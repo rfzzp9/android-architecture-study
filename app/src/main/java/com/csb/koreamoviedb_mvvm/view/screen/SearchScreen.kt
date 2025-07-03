@@ -11,15 +11,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.csb.koreamoviedb_mvc.view.component.FilterDropdown
+import com.csb.koreamoviedb_mvvm.view.component.FilterDropdown
+import com.csb.koreamoviedb_mvvm.intent.SearchIntent
 import com.csb.koreamoviedb_mvvm.view.component.MovieItem
 import com.csb.koreamoviedb_mvvm.viewmodel.MainViewModel
-import com.csb.koreamoviedb_mvvm.tools.RootScreen
 import com.csb.koreamoviedb_mvvm.view.component.CustomProgressDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,9 +29,7 @@ fun SearchScreen(
 ) {
     val focusManager = LocalFocusManager.current
 
-    val searchText by viewModel.searchText.collectAsState()
-    val resultList by viewModel.resultList.collectAsState()
-    val hasSearched by viewModel.hasSearched.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
 
 
     Scaffold(
@@ -46,7 +43,7 @@ fun SearchScreen(
             )
         }
     ) { innerPadding ->
-        CustomProgressDialog(isShowing = viewModel.dialogIsShowing.value)
+        CustomProgressDialog(isShowing = uiState.isLoading)
         LazyColumn(
             modifier = Modifier
                 .padding(innerPadding)
@@ -59,15 +56,18 @@ fun SearchScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(modifier = Modifier.weight(1f)) {
-                        FilterDropdown(viewModel)
+                        FilterDropdown(
+                            selectedFilter = uiState.selectedFilter,
+                            onFilterSelected = { viewModel.processIntent(SearchIntent.SelectFilter(it)) }
+                        )
                     }
 
                     Spacer(modifier = Modifier.width(8.dp))
 
                     OutlinedTextField(
                         singleLine = true,
-                        value = searchText,
-                        onValueChange = { viewModel.updateSearchText(it) },
+                        value = uiState.searchText,
+                        onValueChange = { viewModel.processIntent(SearchIntent.EnterText(it)) },
                         label = { Text("입력") },
                         modifier = Modifier.weight(2f)
                     )
@@ -77,8 +77,8 @@ fun SearchScreen(
 
                 OutlinedButton(
                     onClick = {
-                        if (searchText.isNotBlank()) {
-                            viewModel.search()
+                        if (uiState.searchText.isNotBlank()) {
+                            viewModel.processIntent(SearchIntent.ClickSearchButton)
                         }
                     },
                     modifier = Modifier
@@ -92,8 +92,8 @@ fun SearchScreen(
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            if (resultList.isNotEmpty()) {
-                itemsIndexed(resultList) { index, movie ->
+            if (uiState.resultList.isNotEmpty()) {
+                itemsIndexed(uiState.resultList) { index, movie ->
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -106,7 +106,7 @@ fun SearchScreen(
                         )
                     }
                 }
-            } else if (hasSearched) {
+            } else if (uiState.hasSearched) {
                 item {
                     Text("결과 없음", modifier = Modifier.padding(8.dp))
                 }

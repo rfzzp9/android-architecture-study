@@ -34,16 +34,13 @@ fun MovieItem(
     navController: NavHostController,
     movie: ResultMovieClass
 ) {
-    val context = LocalContext.current
-    val activity = context as ComponentActivity
-    val viewModel = viewModel<SharedMovieViewModel>(activity)
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
             .clickable {
-                viewModel.setSelectedMovie(movie)
+                navController.currentBackStackEntry?.savedStateHandle?.set("movie",movie)
                 navController.navigate(RootScreen.SCREEN_DETAIL.name)
             }
     ) {

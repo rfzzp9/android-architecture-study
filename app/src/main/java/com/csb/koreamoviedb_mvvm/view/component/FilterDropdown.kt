@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvc.view.component
+package com.csb.koreamoviedb_mvvm.view.component
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,16 +9,17 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.csb.koreamoviedb_mvvm.tools.Filter
-import com.csb.koreamoviedb_mvvm.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FilterDropdown(viewModel: MainViewModel) {
+fun FilterDropdown(
+    selectedFilter: Filter,
+    onFilterSelected: (Filter) -> Unit
+) {
     val expanded = remember { mutableStateOf(false) }
     val options = listOf(
         Filter.FILTER_ALL,
@@ -26,7 +27,6 @@ fun FilterDropdown(viewModel: MainViewModel) {
         Filter.FILTER_ACTOR,
         Filter.FILTER_DIRECTOR
     )
-    val selectedFilter = viewModel.selectedFilter.collectAsState()
 
     ExposedDropdownMenuBox(
         modifier = Modifier.fillMaxSize(),
@@ -35,7 +35,7 @@ fun FilterDropdown(viewModel: MainViewModel) {
     ) {
         OutlinedTextField(
             readOnly = true,
-            value = selectedFilter.value.text,
+            value = selectedFilter.text,
             onValueChange = {},
             label = { Text("검색 필터") },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value) },
@@ -52,7 +52,7 @@ fun FilterDropdown(viewModel: MainViewModel) {
                 DropdownMenuItem(
                     text = { Text(option.text) },
                     onClick = {
-                        viewModel.updateSelectedFilter(option)
+                        onFilterSelected(option)
                         expanded.value = false
                     }
                 )

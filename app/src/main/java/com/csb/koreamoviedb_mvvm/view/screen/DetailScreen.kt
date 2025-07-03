@@ -1,17 +1,23 @@
 package com.csb.koreamoviedb_mvvm.view.screen
 
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,16 +28,12 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.csb.koreamoviedb_mvvm.model.data.ResultMovieClass
 import com.csb.koreamoviedb_mvvm.view.component.ClickableLinkText
 import com.csb.koreamoviedb_mvvm.view.component.GlideBox
 import com.csb.koreamoviedb_mvvm.view.component.InfoText
-import com.csb.koreamoviedb_mvvm.viewmodel.MainViewModel
 import com.csb.koreamoviedb_mvvm.viewmodel.SharedMovieViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,11 +43,10 @@ fun DetailScreen(
 ) {
     val focusManager = LocalFocusManager.current
 
-    val context = LocalContext.current
-    val activity = context as ComponentActivity
-    val viewModel = viewModel<SharedMovieViewModel>(activity)
-
-    val movie = viewModel.selectedMovie.value
+    val navBackStackEntry = remember {
+        navController.previousBackStackEntry
+    }
+    val movie = navBackStackEntry?.savedStateHandle?.get<ResultMovieClass>("movie")
 
     if (movie == null) {
         Text("영화 정보를 찾을 수 없습니다.", modifier = Modifier.padding(16.dp))
