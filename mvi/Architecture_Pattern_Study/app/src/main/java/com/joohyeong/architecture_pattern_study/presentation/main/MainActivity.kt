@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMainBinding
 import com.joohyeong.architecture_pattern_study.domain.Movie
+import com.joohyeong.architecture_pattern_study.presentation.main.component.MovieAdapter
 import com.joohyeong.architecture_pattern_study.presentation.moviedetail.MovieDetailActivity
 import kotlinx.coroutines.launch
 

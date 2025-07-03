@@ -1,4 +1,4 @@
-package com.joohyeong.architecture_pattern_study.presentation.main
+package com.joohyeong.architecture_pattern_study.presentation.main.component
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
