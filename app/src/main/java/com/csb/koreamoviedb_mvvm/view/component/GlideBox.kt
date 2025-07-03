@@ -1,6 +1,7 @@
 package com.csb.koreamoviedb_mvvm.view.component
 
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -17,8 +18,10 @@ fun GlideBox(
     model: String,
     modifier: Modifier = Modifier
 ) {
+    Log.d("GlideBox",model)
     Box(
         modifier = modifier
+            .fillMaxSize()
     ) {
         GlideImage(
             modifier = Modifier
