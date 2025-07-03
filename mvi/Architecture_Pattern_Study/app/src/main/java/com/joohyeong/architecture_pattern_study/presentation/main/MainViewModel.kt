@@ -13,8 +13,10 @@ class MainViewModel : ViewModel() {
     private val _uiState: MutableStateFlow<MainUIState> = MutableStateFlow(MainUIState.Loading)
     val uiState: StateFlow<MainUIState> = _uiState.asStateFlow()
 
-    init {
-        loadMovies()
+    fun processIntent(intent: MainIntent) {
+        when (intent) {
+            MainIntent.LoadMovies -> loadMovies()
+        }
     }
     private fun loadMovies() {
         viewModelScope.launch {

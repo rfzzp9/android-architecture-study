@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         applySystemBarsPadding()
 
         initObserve()
+        viewModel.processIntent(MainIntent.LoadMovies)
     }
 
     private fun initObserve() {
