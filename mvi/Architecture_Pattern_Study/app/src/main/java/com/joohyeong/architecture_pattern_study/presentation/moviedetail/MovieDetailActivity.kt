@@ -31,7 +31,7 @@ class MovieDetailActivity : AppCompatActivity() {
         applySystemBarsPadding()
 
         initObserve()
-        viewModel.loadMovieDetail(movieId)
+        viewModel.processIntent(MovieDetailIntent.LoadMovieDetail(movieId))
     }
 
     private fun initObserve() {

@@ -14,8 +14,13 @@ class MovieDetailViewModel : ViewModel() {
         MutableStateFlow(MovieDetailUIState.Loading)
     val uiState: StateFlow<MovieDetailUIState> = _uiState.asStateFlow()
 
+    fun processIntent(intent: MovieDetailIntent) {
+        when (intent) {
+            is MovieDetailIntent.LoadMovieDetail -> loadMovieDetail(intent.movieId)
+        }
+    }
 
-    fun loadMovieDetail(movieId: String) {
+    private fun loadMovieDetail(movieId: String) {
         viewModelScope.launch {
             val result = MovieRepository.fetchMovieDetailById(movieId)
             result.onSuccess {
