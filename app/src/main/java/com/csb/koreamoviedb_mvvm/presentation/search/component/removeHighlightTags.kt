@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvvm.util
+package com.csb.koreamoviedb_mvvm.presentation.search.component
 
 //하이라이팅태그제거
 //<!HS>: Highlight Start

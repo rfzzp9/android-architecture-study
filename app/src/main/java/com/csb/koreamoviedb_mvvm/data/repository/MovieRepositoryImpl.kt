@@ -8,7 +8,7 @@ import com.csb.koreamoviedb_mvvm.BuildConfig
 import com.csb.koreamoviedb_mvvm.data.network.MovieApiService
 import com.csb.koreamoviedb_mvvm.domain.ResultMovieClass
 import com.csb.koreamoviedb_mvvm.repository.MovieRepository
-import com.csb.koreamoviedb_mvvm.util.removeHighlightTags
+import com.csb.koreamoviedb_mvvm.presentation.search.component.removeHighlightTags
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(

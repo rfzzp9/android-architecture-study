@@ -1,6 +1,6 @@
 package com.csb.koreamoviedb_mvvm.presentation.search
 
-import com.csb.koreamoviedb_mvvm.util.Filter
+import com.csb.koreamoviedb_mvvm.Filter
 
 sealed class SearchIntent {
     //검색어

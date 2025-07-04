@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 import com.csb.koreamoviedb_mvvm.domain.ResultMovieClass
-import com.csb.koreamoviedb_mvvm.util.RootScreen
+import com.csb.koreamoviedb_mvvm.RootScreen
 
 @Composable
 fun MovieItem(

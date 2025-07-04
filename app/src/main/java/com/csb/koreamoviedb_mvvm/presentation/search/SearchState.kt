@@ -1,7 +1,7 @@
 package com.csb.koreamoviedb_mvvm.presentation.search
 
 import com.csb.koreamoviedb_mvvm.domain.ResultMovieClass
-import com.csb.koreamoviedb_mvvm.util.Filter
+import com.csb.koreamoviedb_mvvm.Filter
 
 data class SearchState(
     //검색어

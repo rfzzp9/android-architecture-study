@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvvm.util
+package com.csb.koreamoviedb_mvvm
 
 enum class Filter (val num:Int,val text:String) {
     FILTER_ALL(0,"종합"),

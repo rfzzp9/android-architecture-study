@@ -18,7 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.csb.koreamoviedb_mvvm.presentation.detail.DetailScreen
 import com.csb.koreamoviedb_mvvm.presentation.search.SearchScreen
-import com.csb.koreamoviedb_mvvm.util.RootScreen
+import com.csb.koreamoviedb_mvvm.RootScreen
 import com.csb.koreamoviedb_mvvm.presentation.theme.KoreaMovieDB_MVVMTheme
 import dagger.hilt.android.AndroidEntryPoint
 

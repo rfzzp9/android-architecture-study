@@ -1,4 +1,4 @@
-package com.csb.koreamoviedb_mvvm.util
+package com.csb.koreamoviedb_mvvm.presentation.search.component
 
 import android.content.Context
 import android.content.Intent

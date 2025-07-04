@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
-import com.csb.koreamoviedb_mvvm.util.launchBrowserChooser
+import com.csb.koreamoviedb_mvvm.presentation.search.component.launchBrowserChooser
 
 @Composable
 fun ClickableLinkText(
@@ -18,7 +18,6 @@ fun ClickableLinkText(
     Text(
         text = url,
         color = Color.Blue,
-        //color = MaterialTheme.colorScheme.primary,
         modifier = Modifier
             .clickable {
                 launchBrowserChooser(context, url)
