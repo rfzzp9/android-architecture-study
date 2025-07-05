@@ -1,7 +1,7 @@
 package com.example.mvc_project.data
 
 import com.example.mvc_project.R
-import com.example.mvc_project.data.dto.Response
+import com.example.mvc_project.data.dto.MovieResponse
 import com.example.mvc_project.presentation.ui.model.MovieDetailUiState
 import com.example.mvc_project.presentation.ui.model.MovieUiState
 import com.example.mvc_project.presentation.ui.model.isValid
@@ -10,7 +10,7 @@ import com.example.mvc_project.presentation.ui.main.mapper.toMovieDetailUiState
 class MovieListRepository(
     private val movieListRemoteDataSource: MovieListDataSource
 ) {
-    suspend fun fetchMovieList(): Response {
+    suspend fun fetchMovieList(): MovieResponse {
         return movieListRemoteDataSource.fetchMovieList()
     }
 
