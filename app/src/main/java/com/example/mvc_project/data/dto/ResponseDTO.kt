@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseDTO(
+data class Response(
     @SerialName("Query")
     val query: String? = null,
     @SerialName("KMAQuery")
