@@ -3,11 +3,9 @@ package com.example.mvc_project.presentation.ui.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mvc_project.R
-import com.example.mvc_project.domain.model.MovieDetailUiState
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.data.MovieListRepository
+import com.example.mvc_project.presentation.ui.model.MovieUiState
 import com.example.mvc_project.presentation.sideeffect.MovieDetailSideEffect
-import com.example.mvc_project.presentation.ui.detail.MovieDetailViewState
-import com.example.mvc_project.presentation.ui.main.mapper.toMovieDetailUiState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,7 +16,9 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel : ViewModel() {
+class MovieDetailViewModel(
+    private val repository: MovieListRepository
+) : ViewModel() {
 
     private val _viewState = MutableStateFlow(MovieDetailViewState())
     val viewState: StateFlow<MovieDetailViewState> = _viewState.asStateFlow()
@@ -55,35 +55,28 @@ class MovieDetailViewModel : ViewModel() {
         }
 
         try {
-            if (isValidMovieData(movie)) {
-                val movieDetail = movie.toMovieDetailUiState()
+            // Repository에서 검증 및 데이터 처리
+            val movieDetail = repository.getMovieDetail(movie)
 
-                _viewState.update { currentState ->
-                    currentState.copy(
-                        isLoading = false,
-                        movieDetail = movieDetail,
-                        error = null
-                    )
-                }
-            } else {
-                val errorMessage = R.string.not_found_movieInfo.toString()
-                _viewState.update { currentState ->
-                    currentState.copy(
-                        isLoading = false,
-                        error = errorMessage
-                    )
-                }
-                _sideEffect.send(MovieDetailSideEffect.ShowErrorAndDismiss(errorMessage))
-            }
-        } catch (e: Exception) {
-            val errorMessage = R.string.fail_load_movieInfo.toString()
             _viewState.update { currentState ->
                 currentState.copy(
                     isLoading = false,
-                    error = errorMessage
+                    movieDetail = movieDetail,
+                    error = null
                 )
             }
-            _sideEffect.send(MovieDetailSideEffect.ShowErrorAndDismiss(errorMessage))
+        } catch (e: IllegalArgumentException) {
+            val errorMessage = e.message ?: R.string.not_found_movieInfo.toString()            // 검증 오류
+            _viewState.update { currentState ->
+                currentState.copy(isLoading = false, error = errorMessage)
+            }
+            _sideEffect.trySend(MovieDetailSideEffect.ShowErrorAndDismiss(errorMessage))
+        } catch (e: Exception) {
+            val errorMessage = R.string.fail_load_movieInfo.toString()                         // 기타 오류
+            _viewState.update { currentState ->
+                currentState.copy(isLoading = false, error = errorMessage)
+            }
+            _sideEffect.trySend(MovieDetailSideEffect.ShowErrorAndDismiss(errorMessage))
         }
     }
 
