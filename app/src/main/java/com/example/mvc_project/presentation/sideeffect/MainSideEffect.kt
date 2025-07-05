@@ -1,6 +1,6 @@
 package com.example.mvc_project.presentation.sideeffect
 
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.presentation.ui.model.MovieUiState
 
 sealed class MainSideEffect {
     data class ShowMovieDetailDialog(val movie: MovieUiState) : MainSideEffect()

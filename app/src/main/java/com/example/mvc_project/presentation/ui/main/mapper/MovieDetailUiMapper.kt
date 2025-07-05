@@ -1,7 +1,7 @@
 package com.example.mvc_project.presentation.ui.main.mapper
 
-import com.example.mvc_project.domain.model.MovieDetailUiState
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.presentation.ui.model.MovieDetailUiState
+import com.example.mvc_project.presentation.ui.model.MovieUiState
 
 fun MovieUiState.toMovieDetailUiState() = MovieDetailUiState(
     moviePoster = this.moviePoster.orEmpty(),

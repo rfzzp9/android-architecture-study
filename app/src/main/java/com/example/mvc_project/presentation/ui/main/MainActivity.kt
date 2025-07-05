@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.mvc_project.R
 import com.example.mvc_project.databinding.ActivityMainBinding
 import com.example.mvc_project.presentation.ui.detail.MovieDetailDialogFragment
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.presentation.ui.model.MovieUiState
 import com.example.mvc_project.presentation.sideeffect.MainSideEffect
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch

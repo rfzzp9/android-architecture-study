@@ -1,6 +1,6 @@
 package com.example.mvc_project.presentation.ui.main.mapper
 
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.presentation.ui.model.MovieUiState
 import com.example.mvc_project.data.dto.MovieDataDTO
 
 fun MovieDataDTO.toUiModel() = MovieUiState(

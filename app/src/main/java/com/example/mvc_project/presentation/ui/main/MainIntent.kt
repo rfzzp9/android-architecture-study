@@ -1,6 +1,6 @@
 package com.example.mvc_project.presentation.ui.main
 
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.presentation.ui.model.MovieUiState
 
 sealed class MainIntent {
     object LoadMovieList : MainIntent()

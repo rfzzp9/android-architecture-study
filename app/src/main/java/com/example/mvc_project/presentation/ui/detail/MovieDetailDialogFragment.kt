@@ -21,8 +21,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.example.mvc_project.R
 import com.example.mvc_project.databinding.DialogMovieDetailBinding
-import com.example.mvc_project.domain.model.MovieDetailUiState
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.presentation.ui.model.MovieDetailUiState
+import com.example.mvc_project.presentation.ui.model.MovieUiState
 import com.example.mvc_project.presentation.sideeffect.MovieDetailSideEffect
 import kotlinx.coroutines.launch
 

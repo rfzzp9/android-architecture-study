@@ -1,12 +1,12 @@
 package com.example.mvc_project.data
 
 import com.example.mvc_project.data.api.ApiService
-import com.example.mvc_project.data.dto.ResponseDTO
+import com.example.mvc_project.data.dto.Response
 
 class MovieListDataSource(
     private val api: ApiService
 ) {
-    suspend fun fetchMovieList(): ResponseDTO {
+    suspend fun fetchMovieList(): Response {
         return try {
             val response = api.fetchMovieList()
             response.body() ?: emptyResponseDTO()
@@ -15,5 +15,5 @@ class MovieListDataSource(
         }
     }
 
-    private fun emptyResponseDTO() = ResponseDTO(dataList = emptyList())
+    private fun emptyResponseDTO() = Response(dataList = emptyList())
 }
