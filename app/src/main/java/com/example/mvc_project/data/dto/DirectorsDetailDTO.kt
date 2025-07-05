@@ -1,4 +1,4 @@
-package com.example.mvc_project.model.dto
+package com.example.mvc_project.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

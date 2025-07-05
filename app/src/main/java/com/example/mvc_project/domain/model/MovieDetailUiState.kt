@@ -1,4 +1,4 @@
-package com.example.mvc_project.view
+package com.example.mvc_project.domain.model
 
 data class MovieDetailUiState(
     val moviePoster: String = "",

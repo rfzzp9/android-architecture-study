@@ -1,4 +1,4 @@
-package com.example.mvc_project.view
+package com.example.mvc_project.ui.detail
 
 import android.content.Context
 import android.graphics.Color
@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Lifecycle
@@ -19,7 +20,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.example.mvc_project.R
 import com.example.mvc_project.databinding.DialogMovieDetailBinding
-import com.example.mvc_project.viewmodel.MovieDetailViewModel
+import com.example.mvc_project.domain.model.MovieDetailUiState
+import com.example.mvc_project.domain.model.MovieUiState
 import kotlinx.coroutines.launch
 
 class MovieDetailDialogFragment : DialogFragment() {
@@ -124,7 +126,7 @@ class MovieDetailDialogFragment : DialogFragment() {
     }
 
     // 각 텍스트뷰 설정 로직
-    private fun setTextOrDefault(textView: android.widget.TextView, text: String, suffix: String = "") {
+    private fun setTextOrDefault(textView: TextView, text: String, suffix: String = "") {
         textView.text = if (text.isNotBlank()) {
             "$text$suffix"
         } else {

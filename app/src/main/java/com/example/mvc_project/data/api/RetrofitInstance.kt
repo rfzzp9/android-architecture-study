@@ -1,4 +1,4 @@
-package com.example.mvc_project.model.network
+package com.example.mvc_project.data.api
 
 import com.example.mvc_project.BuildConfig
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory

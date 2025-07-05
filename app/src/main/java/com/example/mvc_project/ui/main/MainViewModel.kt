@@ -1,11 +1,11 @@
-package com.example.mvc_project.viewmodel
+package com.example.mvc_project.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.example.mvc_project.model.MovieListRepository
-import com.example.mvc_project.view.MovieUiState
+import com.example.mvc_project.data.MovieListRepository
+import com.example.mvc_project.domain.model.MovieUiState
 import com.example.mvc_project.view.mapper.toUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

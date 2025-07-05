@@ -1,4 +1,4 @@
-package com.example.mvc_project.view
+package com.example.mvc_project.ui.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -11,12 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.mvc_project.R
-import com.example.mvc_project.model.MovieListDataSource
-import com.example.mvc_project.model.MovieListRepository
-import com.example.mvc_project.model.network.ApiService
-import com.example.mvc_project.model.network.RetrofitInstance
+import com.example.mvc_project.data.MovieListRepository
 import com.example.mvc_project.databinding.ActivityMainBinding
-import com.example.mvc_project.viewmodel.MainViewModel
+import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.data.MovieListDataSource
+import com.example.mvc_project.data.api.ApiService
+import com.example.mvc_project.data.api.RetrofitInstance
+import com.example.mvc_project.ui.main.MovieAdapter
+import com.example.mvc_project.ui.detail.MovieDetailDialogFragment
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showMovieDetail(movie: MovieUiState) {
-        val movieDetailDialog = MovieDetailDialogFragment.newInstance(movie)
+        val movieDetailDialog = MovieDetailDialogFragment.Companion.newInstance(movie)
         movieDetailDialog.show(
             supportFragmentManager,
             MovieDetailDialogFragment::class.java.simpleName

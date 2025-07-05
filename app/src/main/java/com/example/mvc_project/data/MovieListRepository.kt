@@ -1,6 +1,7 @@
-package com.example.mvc_project.model
+package com.example.mvc_project.data
 
-import com.example.mvc_project.model.dto.ResponseDTO
+import com.example.mvc_project.data.MovieListDataSource
+import com.example.mvc_project.data.dto.ResponseDTO
 
 class MovieListRepository(
     private val movieListRemoteDataSource: MovieListDataSource
