@@ -1,4 +1,4 @@
-package com.example.mvc_project.domain.model
+package com.example.mvc_project.view
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

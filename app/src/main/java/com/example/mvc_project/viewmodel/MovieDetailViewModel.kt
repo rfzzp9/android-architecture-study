@@ -1,9 +1,9 @@
-package com.example.mvc_project.ui.detail
+package com.example.mvc_project.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mvc_project.domain.model.MovieDetailUiState
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.view.MovieDetailUiState
+import com.example.mvc_project.view.MovieUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

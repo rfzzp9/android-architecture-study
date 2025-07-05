@@ -1,7 +1,7 @@
-package com.example.mvc_project.data.api
+package com.example.mvc_project.model.network
 
 import com.example.mvc_project.BuildConfig
-import com.example.mvc_project.data.dto.ResponseDTO
+import com.example.mvc_project.model.dto.ResponseDTO
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

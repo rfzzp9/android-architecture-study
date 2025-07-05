@@ -1,7 +1,8 @@
-package com.example.mvc_project.data
+package com.example.mvc_project.model
 
-import com.example.mvc_project.data.api.ApiService
-import com.example.mvc_project.data.dto.ResponseDTO
+import com.example.mvc_project.model.dto.ResponseDTO
+import com.example.mvc_project.model.network.ApiService
+
 
 class MovieListDataSource(
     private val api: ApiService
