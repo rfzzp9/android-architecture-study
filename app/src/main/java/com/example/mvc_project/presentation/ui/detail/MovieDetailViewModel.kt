@@ -1,11 +1,18 @@
 package com.example.mvc_project.presentation.ui.detail
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.mvc_project.R
+import com.example.mvc_project.data.MovieListDataSource
 import com.example.mvc_project.data.MovieListRepository
+import com.example.mvc_project.data.api.ApiService
+import com.example.mvc_project.data.api.RetrofitInstance
 import com.example.mvc_project.presentation.ui.model.MovieUiState
 import com.example.mvc_project.presentation.sideeffect.MovieDetailSideEffect
+import com.example.mvc_project.presentation.ui.main.MainViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -55,7 +62,6 @@ class MovieDetailViewModel(
         }
 
         try {
-            // Repository에서 검증 및 데이터 처리
             val movieDetail = repository.getMovieDetail(movie)
 
             _viewState.update { currentState ->
@@ -84,8 +90,28 @@ class MovieDetailViewModel(
         _sideEffect.send(MovieDetailSideEffect.DismissDialog)
     }
 
-    private fun isValidMovieData(movie: MovieUiState): Boolean {
-        return !movie.movieName.isNullOrBlank()
+}
+
+class MovieDetailViewModelFactory private constructor(
+    private val repository: MovieListRepository
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(
+        modelClass: Class<T>,
+        extras: CreationExtras,
+    ): T {
+        if (modelClass.isAssignableFrom(MovieDetailViewModel::class.java)) {
+            return MovieDetailViewModel(repository) as T
+        }
+        throw IllegalArgumentException()
     }
 
+    companion object {
+        fun create(): MovieDetailViewModelFactory {
+            val apiService = RetrofitInstance.getInstance().create(ApiService::class.java)
+            val dataSource = MovieListDataSource(apiService)
+            val repository = MovieListRepository(dataSource)
+            return MovieDetailViewModelFactory(repository)
+        }
+    }
 }

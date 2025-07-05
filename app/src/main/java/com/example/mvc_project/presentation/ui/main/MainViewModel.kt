@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.example.mvc_project.R
 import com.example.mvc_project.data.MovieListDataSource
 import com.example.mvc_project.data.MovieListRepository
 import com.example.mvc_project.data.api.ApiService
 import com.example.mvc_project.data.api.RetrofitInstance
-import com.example.mvc_project.domain.model.MovieUiState
+import com.example.mvc_project.presentation.ui.model.MovieUiState
 import com.example.mvc_project.presentation.sideeffect.MainSideEffect
+import com.example.mvc_project.presentation.ui.detail.MovieDetailViewModel
 import com.example.mvc_project.presentation.ui.main.mapper.toUiModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -97,18 +99,17 @@ class MainViewModel(
 }
 
 class MainViewModelFactory private constructor(
-    private val movieListRepository: MovieListRepository
+    private val repository: MovieListRepository
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(
         modelClass: Class<T>,
         extras: CreationExtras,
     ): T {
-        return if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            MainViewModel(movieListRepository) as T
-        } else {
-            throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            return MainViewModel(repository) as T
         }
+        throw IllegalArgumentException()
     }
 
     companion object {

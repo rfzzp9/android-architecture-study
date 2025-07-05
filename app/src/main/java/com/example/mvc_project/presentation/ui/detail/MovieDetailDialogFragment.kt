@@ -35,7 +35,11 @@ class MovieDetailDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[MovieDetailViewModel::class.java]
+
+        viewModel = ViewModelProvider(
+            this,
+            MovieDetailViewModelFactory.create()
+        )[MovieDetailViewModel::class.java]
     }
 
     override fun onCreateView(
