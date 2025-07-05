@@ -1,4 +1,4 @@
-package com.example.mvc_project.view.mapper
+package com.example.mvc_project.ui.main.mapper
 
 import com.example.mvc_project.domain.model.MovieUiState
 import com.example.mvc_project.data.dto.MovieDataDTO

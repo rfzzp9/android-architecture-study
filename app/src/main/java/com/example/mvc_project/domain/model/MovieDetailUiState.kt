@@ -1,2 +1,12 @@
-package com.example.mvc_project.domain.model 
+package com.example.mvc_project.domain.model
 
+data class MovieDetailUiState(
+    val moviePoster: String = "",
+    val movieName: String = "",
+    val movieRunningTime: String = "",
+    val movieGrade: String = "",
+    val actorName: String = "",
+    val director: String = "",
+    val plotText: String = "",
+    val prodYear: String = "",
+)
