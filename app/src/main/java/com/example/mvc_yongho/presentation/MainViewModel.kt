@@ -19,9 +19,18 @@ class MainViewModel @Inject constructor(
     val uiState = _uiState.asStateFlow()
 
     private val _searchQuery = MutableStateFlow("")
-    val searchQuery = _searchQuery
+    val searchQuery = _searchQuery.asStateFlow()
 
-    fun searchMovies(title: String) {
+    fun handleIntent(intent: MainIntent) {
+        when (intent) {
+            is MainIntent.SearchMovie -> {
+                _searchQuery.value = intent.query
+                searchMovies(intent.query)
+            }
+        }
+    }
+
+    private fun searchMovies(title: String) {
         _uiState.value = MovieUiState.Loading
         viewModelScope.launch {
             movieRepository.searchMovies(title)
@@ -36,6 +45,10 @@ class MainViewModel @Inject constructor(
                     _uiState.value = MovieUiState.Error(e.message ?: SEARCH_NOT_FOUND)
                 }
         }
+    }
+
+    fun updateSearchQuery(query: String) {
+        _searchQuery.value = query
     }
 
     companion object {

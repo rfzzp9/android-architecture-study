@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mvc_yongho.R
 import com.example.mvc_yongho.domain.model.Movie
+import com.example.mvc_yongho.presentation.MainIntent
 import com.example.mvc_yongho.presentation.MainViewModel
 import com.example.mvc_yongho.presentation.component.MovieCard
 import com.example.mvc_yongho.presentation.model.MovieUiState
@@ -46,10 +47,10 @@ fun MovieScreen(
         modifier = modifier,
         onDetailClick = onDetailClick,
         onSearchClick = { title ->
-            viewModel.searchMovies(title)
+            viewModel.handleIntent(MainIntent.SearchMovie(title))
         },
         onSearchQueryChange = {
-            viewModel.searchQuery.value = it
+            viewModel.updateSearchQuery(it)
         }
     )
 
