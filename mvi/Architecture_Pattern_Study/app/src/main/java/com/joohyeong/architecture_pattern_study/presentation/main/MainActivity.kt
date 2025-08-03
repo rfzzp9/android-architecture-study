@@ -1,6 +1,7 @@
 package com.joohyeong.architecture_pattern_study.presentation.main
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -38,9 +39,19 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.uiState.collect {
                 when (it) {
-                    is MainUIState.Success -> showMovies(it.movies)
-                    MainUIState.Loading -> Unit
-                    is MainUIState.Error -> showLoadMoviesError()
+                    is MainUIState.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        showMovies(it.movies)
+                    }
+
+                    MainUIState.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+
+                    is MainUIState.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        showLoadMoviesError()
+                    }
                 }
             }
         }
