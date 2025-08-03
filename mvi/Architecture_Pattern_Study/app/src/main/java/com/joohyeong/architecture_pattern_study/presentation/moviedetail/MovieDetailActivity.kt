@@ -13,9 +13,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMovieDetailBinding
-import com.joohyeong.architecture_pattern_study.domain.MovieDetail
+import com.joohyeong.architecture_pattern_study.model.MovieDetail
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MovieDetailActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMovieDetailBinding.inflate(layoutInflater) }
     private val viewModel: MovieDetailViewModel by viewModels()

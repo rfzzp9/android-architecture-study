@@ -10,11 +10,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMainBinding
-import com.joohyeong.architecture_pattern_study.domain.Movie
+import com.joohyeong.architecture_pattern_study.model.Movie
 import com.joohyeong.architecture_pattern_study.presentation.main.component.MovieAdapter
 import com.joohyeong.architecture_pattern_study.presentation.moviedetail.MovieDetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)

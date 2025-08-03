@@ -2,14 +2,19 @@ package com.joohyeong.architecture_pattern_study.presentation.moviedetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.joohyeong.architecture_pattern_study.domain.MovieRepository
+import com.joohyeong.architecture_pattern_study.data.MovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieDetailViewModel : ViewModel() {
+@HiltViewModel
+class MovieDetailViewModel @Inject constructor(
+    private val movieRepository: MovieRepository
+) : ViewModel() {
     private val _uiState: MutableStateFlow<MovieDetailUIState> =
         MutableStateFlow(MovieDetailUIState.Loading)
     val uiState: StateFlow<MovieDetailUIState> = _uiState.asStateFlow()
@@ -22,7 +27,7 @@ class MovieDetailViewModel : ViewModel() {
 
     private fun loadMovieDetail(movieId: String) {
         viewModelScope.launch {
-            val result = MovieRepository.fetchMovieDetailById(movieId)
+            val result = movieRepository.fetchMovieDetailById(movieId)
             result.onSuccess {
                 _uiState.update {
                     MovieDetailUIState.Success(

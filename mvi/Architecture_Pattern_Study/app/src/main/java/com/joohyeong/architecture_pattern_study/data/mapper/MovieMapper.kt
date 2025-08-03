@@ -1,7 +1,7 @@
 package com.joohyeong.architecture_pattern_study.data.mapper
 
 import com.joohyeong.architecture_pattern_study.data.response.MovieEntity
-import com.joohyeong.architecture_pattern_study.domain.Movie
+import com.joohyeong.architecture_pattern_study.model.Movie
 
 fun MovieEntity.toMovie(): Movie = Movie(
     id = id,

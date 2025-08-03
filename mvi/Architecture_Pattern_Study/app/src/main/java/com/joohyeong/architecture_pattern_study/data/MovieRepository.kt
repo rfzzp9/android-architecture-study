@@ -1,13 +1,15 @@
-package com.joohyeong.architecture_pattern_study.domain
+package com.joohyeong.architecture_pattern_study.data
 
-import com.joohyeong.architecture_pattern_study.data.ApiClient
-import com.joohyeong.architecture_pattern_study.data.MovieService
 import com.joohyeong.architecture_pattern_study.data.mapper.toMovie
 import com.joohyeong.architecture_pattern_study.data.mapper.toMovieDetail
 import com.joohyeong.architecture_pattern_study.data.response.MovieEntity
+import com.joohyeong.architecture_pattern_study.model.Movie
+import com.joohyeong.architecture_pattern_study.model.MovieDetail
+import javax.inject.Inject
 
-object MovieRepository {
-    private val movieService = ApiClient.client.create(MovieService::class.java)
+class MovieRepository @Inject constructor(
+    private val movieService: MovieService
+) {
     private val movieCache = mutableListOf<MovieEntity>()
 
     suspend fun fetchMovies(): Result<List<Movie>> {

@@ -1,4 +1,4 @@
-package com.joohyeong.architecture_pattern_study.domain
+package com.joohyeong.architecture_pattern_study.model
 
 data class MovieDetail(
     val id: String,                   // DOCID or 내부 ID (상세 조회용, 캐싱 Key용)
