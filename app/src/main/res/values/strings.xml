@@ -2,4 +2,8 @@
     <string name="app_name">MVC_Project</string>
     <string name="no_information">정보가 없습니다.</string>
     <string name="error_information">알 수 없는 오류가 발생했습니다.</string>
+
+    <string name="no_title">제목 없음</string>
+    <string name="no_runtime_info">시간 정보 없음</string>
+    <string name="no_grade_info">등급 정보 없음</string>
 </resources>
