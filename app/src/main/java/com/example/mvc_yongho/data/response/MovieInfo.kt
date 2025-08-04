@@ -1,6 +1,5 @@
 package com.example.mvc_yongho.data.response
 
-import com.example.mvc_yongho.domain.model.Movie
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -42,17 +41,4 @@ data class MovieInfo(
 
     val posterUrl: String
         get() = posters.split("|").firstOrNull() ?: ""
-}
-
-fun MovieInfo.toMovie(): Movie {
-    return Movie(
-        title = cleanTitle,
-        posterUrl = posterUrl,
-        directorName = directorName,
-        prodYear = prodYear,
-        nation = nation,
-        runtimeWithMinutes = runtimeWithMinutes,
-        plotText = plotText,
-        kmdbUrl = kmdbUrl
-    )
 }
