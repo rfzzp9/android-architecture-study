@@ -1,4 +1,4 @@
-package com.example.mvc_yongho.data.model
+package com.example.mvc_yongho.data.response
 
 import com.example.mvc_yongho.domain.model.Movie
 import kotlinx.serialization.SerialName

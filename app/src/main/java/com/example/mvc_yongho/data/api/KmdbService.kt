@@ -1,7 +1,7 @@
 package com.example.mvc_yongho.data.api
 
 import com.example.mvc_yongho.BuildConfig
-import com.example.mvc_yongho.data.model.KmdbResponse
+import com.example.mvc_yongho.data.response.KmdbResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

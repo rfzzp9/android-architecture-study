@@ -1,11 +1,11 @@
 package com.example.mvc_yongho.model.repository
 
-import com.example.mvc_yongho.data.model.Actors
-import com.example.mvc_yongho.data.model.CollectionData
-import com.example.mvc_yongho.data.model.Directors
-import com.example.mvc_yongho.data.model.KmdbResponse
-import com.example.mvc_yongho.data.model.MovieInfo
-import com.example.mvc_yongho.data.model.Plots
+import com.example.mvc_yongho.data.response.Actors
+import com.example.mvc_yongho.data.response.CollectionData
+import com.example.mvc_yongho.data.response.Directors
+import com.example.mvc_yongho.data.response.KmdbResponse
+import com.example.mvc_yongho.data.response.MovieInfo
+import com.example.mvc_yongho.data.response.Plots
 import com.example.mvc_yongho.data.repository.MovieRepositoryImpl
 import com.example.mvc_yongho.data.datasource.MovieDataSource
 import com.example.mvc_yongho.domain.model.Movie

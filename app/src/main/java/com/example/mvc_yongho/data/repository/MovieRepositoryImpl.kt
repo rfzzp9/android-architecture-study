@@ -1,7 +1,7 @@
 package com.example.mvc_yongho.data.repository
 
 import com.example.mvc_yongho.data.datasource.MovieDataSource
-import com.example.mvc_yongho.data.model.toMovie
+import com.example.mvc_yongho.data.response.toMovie
 import com.example.mvc_yongho.domain.model.Movie
 import com.example.mvc_yongho.domain.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers

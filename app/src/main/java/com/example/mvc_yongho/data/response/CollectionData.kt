@@ -1,4 +1,4 @@
-package com.example.mvc_yongho.data.model
+package com.example.mvc_yongho.data.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
