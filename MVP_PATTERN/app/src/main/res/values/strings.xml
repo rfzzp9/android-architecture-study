@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">mvc_yongho</string>
+    <string name="runtime_format">%s분</string>
+    <string name="hint_search_movie_title">제목을 입력해주세요</string>
+    <string name="label_director">감독</string>
+    <string name="label_year">제작연도</string>
+    <string name="label_nation">제작국가</string>
+    <string name="label_runtime">상영시간</string>
+    <string name="view_details_on_kmdb">KMDB에서 자세히 보기</string>
+</resources>
