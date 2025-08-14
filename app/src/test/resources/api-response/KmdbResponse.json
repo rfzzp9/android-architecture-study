@@ -1,0 +1,346 @@
+{
+  "Query": "",
+  "KMAQuery": "아바타",
+  "TotalCount": 6,
+  "Data": [
+    {
+      "CollName": "kmdb_new2",
+      "TotalCount": 6,
+      "Count": 6,
+      "Result": [
+        {
+          "DOCID": "F24464",
+          "movieId": "F",
+          "movieSeq": "24464",
+          "title": "  !HS 아바타 !HE ",
+          "titleEng": "Avatar",
+          "titleOrg": "Avatar",
+          "titleEtc": "아바타^Avatar^아바타 리마스터링, 아바타리마스터링^Avatar^Avatar",
+          "prodYear": "2009",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "제임스 카메론",
+                "directorEnNm": "James Cameron",
+                "directorId": "00049173"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "샘 워싱톤",
+                "actorEnNm": "Sam Worthington",
+                "actorId": "00114524"
+              },
+              {
+                "actorNm": "시고니 위버",
+                "actorEnNm": "Sigourney Weaver",
+                "actorId": "00049166"
+              },
+              {
+                "actorNm": "미셸 로드리게즈",
+                "actorEnNm": "Michelle Rodriguez",
+                "actorId": "00103369"
+              },
+              {
+                "actorNm": "조 샐다나",
+                "actorEnNm": "Zoe Saldana",
+                "actorId": "00125144"
+              },
+              {
+                "actorNm": "스테판 랭",
+                "actorEnNm": "Stephen Lang",
+                "actorId": "00117523"
+              },
+              {
+                "actorNm": "지오바니 리비시",
+                "actorEnNm": "Giovanni Ribisi",
+                "actorId": "00074353"
+              },
+              {
+                "actorNm": "조엘 무어",
+                "actorEnNm": "Joel Moore",
+                "actorId": "00089563"
+              },
+              {
+                "actorNm": "CCH 파운더",
+                "actorEnNm": "CCH Pounder",
+                "actorId": "00150095"
+              }
+            ]
+          },
+          "nation": "미국",
+          "company": "Twentieth Century-Fox Film Corporation,Lightstorm ",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "신비로운 생명체와 아름다운 자연을 자랑하는 행성, 판도라. 거대한 미션을 수행하기 위해 지구에서 환상적인 세계, 판도라로 온 남자, 그리고 그에게 찾아온 예기치 못한 사랑. 하지만 이들에겐 거대한 전쟁이 닥쳐오고 남자는 한 문명을 구하기 위해 전투를 주도하게 되는데…"
+              }
+            ]
+          },
+          "runtime": "162",
+          "rating": "12세관람가",
+          "genre": "액션,SF,어드벤처",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/24464"
+        },
+        {
+          "DOCID": "F32494",
+          "movieId": "F",
+          "movieSeq": "32494",
+          "title": "  !HS 아바타 !HE  정글의 비밀",
+          "titleEng": "",
+          "titleOrg": "Shou Hu Zhe Sen Lin",
+          "titleEtc": "아바타정글의비밀^아바타 정글의 비밀^Shou Hu Zhe Sen Lin^아바타정글의비밀,아바타 정글의비밀^Jungle Master",
+          "prodYear": "2013",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "슈 커",
+                "directorEnNm": "Xu Kerr",
+                "directorId": "00181731"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "중국",
+          "company": "Hippo Animation",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "위험에 빠진 정글을 구하기 위한 라이니와 블루의신비한 정글 대모험이 시작된다!                          과학 연구소의 수석연구원인 엄마와 단 둘이 살고 있는 '라이니'는 늘 일 때문에 바쁜 일상을 보내는 엄마로 인해 생일 조차 홀로 보내고 만다. 원망스러운 마음에 엄마의 연구소에 찾아간 라이니는 연구원의 실수로 쏜 공간 이동 레이저에 의해 낯선 정글 세계로 오게 된다. 아름답지만 위험천만한 정글에서 라이니는 공룡들에게 공격 당하고, 자신을 구해준 요정 '블루'와 친구가 되어 신비한 정글 세계 모험을 결심한다. 한편, 욕심 많은 연구소 소장은 정글의 특수 광물을 캐내기 위한 로봇과 특수 부대를 파견하고, 오랫동안 정글에 파견되어 정글의 생물을 연구한 박사는 자연이 파괴되는 것을 막기 위해 라이니, 블루와 힘을 합쳐 정글을 구하기 위해 나선다. 한편, 라이니가 정글로 간 것을 알게 된 엄마는 직접 라이니를 찾아 나서는데.. 과연 라이니는 블루와 함께 위험에 빠진 정글을 구하고 무사히 엄마를 만날 수 있을까?"
+              }
+            ]
+          },
+          "runtime": "78",
+          "rating": "전체관람가",
+          "genre": "어드벤처,판타지",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/32494"
+        },
+        {
+          "DOCID": "F55873",
+          "movieId": "F",
+          "movieSeq": "55873",
+          "title": "  !HS 아바타 !HE : 물의 길",
+          "titleEng": "Avatar: The Way of Water",
+          "titleOrg": "",
+          "titleEtc": "아바타:물의길^아바타: 물의 길^아바타물의길, 아바타 물의 길, 아바타: 물의길, 아바타 물의길, 아바타 2, Avatar 2, 아바타2, Avatar2^Avatar: The Way of Water",
+          "prodYear": "2022",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "제임스 카메론",
+                "directorEnNm": "James Cameron",
+                "directorId": "00049173"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "조 샐다나",
+                "actorEnNm": "Zoe Saldana",
+                "actorId": "00125144"
+              },
+              {
+                "actorNm": "샘 워싱턴",
+                "actorEnNm": "Sam Worthington",
+                "actorId": "00114524"
+              },
+              {
+                "actorNm": "시고니 위버",
+                "actorEnNm": "Sigourney Weaver",
+                "actorId": "00049166"
+              },
+              {
+                "actorNm": "오나 채플린",
+                "actorEnNm": "Oona Chaplin",
+                "actorId": "00220614"
+              },
+              {
+                "actorNm": "제메인 클레멘트",
+                "actorEnNm": "Jemaine Clement",
+                "actorId": "00155411"
+              }
+            ]
+          },
+          "nation": "미국",
+          "company": "라이트스톰 스튜디오",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "판도라 행성에서 '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기"
+              }
+            ]
+          },
+          "runtime": "192",
+          "rating": "12세관람가",
+          "genre": "액션,어드벤처,SF,스릴러,판타지",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/55873"
+        },
+        {
+          "DOCID": "F54761",
+          "movieId": "F",
+          "movieSeq": "54761",
+          "title": "  !HS 아바타 !HE 의 후예2: 인간 성노예",
+          "titleEng": "This Ain't Avatar XXX #2",
+          "titleOrg": "",
+          "titleEtc": "아바타의후예2:인간성노예^아바타의 후예2: 인간 성노예^아바타의후예2인간성노예, 아바타의 후예2 인간 성노예, 아바타의 후예2 : 인간 성노예^This Ain't Avatar XXX #2",
+          "prodYear": "2011",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "악셀 브라운",
+                "directorEnNm": "",
+                "directorId": ""
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "안드리아나 세포라",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "헬리 헬파이어",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "네덜란드",
+          "company": "Sapphire Media International BV",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "판도라 행성에서 나비족과 인간들이 나누는 사랑을 그린 성애영화"
+              }
+            ]
+          },
+          "runtime": "63",
+          "rating": "18세관람가(청소년관람불가)",
+          "genre": "에로",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/54761"
+        },
+        {
+          "DOCID": "F54762",
+          "movieId": "F",
+          "movieSeq": "54762",
+          "title": "  !HS 아바타 !HE 의 후예1 : 쾌락의 행성",
+          "titleEng": "This Ain't Avatar XXX",
+          "titleOrg": "",
+          "titleEtc": "아바타의후예1:쾌락의행성^아바타의 후예1 : 쾌락의 행성^아바타의후예1쾌락의행성, 아바타의 후예1: 쾌락의 행성, 아바타의 후예1 쾌락의 행성^This Ain't Avatar XXX",
+          "prodYear": "2010",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "악셀 브라운",
+                "directorEnNm": "",
+                "directorId": ""
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "샤넬 프레스톤",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "줄츠 벤투라",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "네덜란드",
+          "company": "Sapphire Media International BV",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "판도라 행성의 나비족을 다룬 성애영화"
+              }
+            ]
+          },
+          "runtime": "67",
+          "rating": "18세관람가(청소년관람불가)",
+          "genre": "에로",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/54762"
+        },
+        {
+          "DOCID": "F61058",
+          "movieId": "F",
+          "movieSeq": "61058",
+          "title": "  !HS 아바타 !HE : 아앙의 전설",
+          "titleEng": "Avatar: The Last Airbender",
+          "titleOrg": "",
+          "titleEtc": "아바타:아앙의전설^아바타: 아앙의 전설^Avatar: The Last Airbender",
+          "prodYear": "2023",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "마이클 고이",
+                "directorEnNm": "Michael Goi",
+                "directorId": "00102426"
+              },
+              {
+                "directorNm": "로젠느 리앙",
+                "directorEnNm": "Roseanne Liang",
+                "directorId": "00216272"
+              },
+              {
+                "directorNm": "자바 라이사니",
+                "directorEnNm": "",
+                "directorId": ""
+              },
+              {
+                "directorNm": "제트 윌킨슨",
+                "directorEnNm": "",
+                "directorId": ""
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "고든 코르미에",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "미국",
+          "company": "",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "",
+                "plotText": ""
+              }
+            ]
+          },
+          "runtime": "",
+          "rating": "12세관람가",
+          "genre": "액션,어드벤처,코메디,SF,판타지",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/61058"
+        }
+      ]
+    }
+  ]
+}
