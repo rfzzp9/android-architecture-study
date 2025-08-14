@@ -1,6 +1,7 @@
 package com.joohyeong.architecture_pattern_study.presentation.main
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -10,11 +11,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ActivityMainBinding
-import com.joohyeong.architecture_pattern_study.domain.Movie
+import com.joohyeong.architecture_pattern_study.model.Movie
 import com.joohyeong.architecture_pattern_study.presentation.main.component.MovieAdapter
 import com.joohyeong.architecture_pattern_study.presentation.moviedetail.MovieDetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -36,9 +39,19 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.uiState.collect {
                 when (it) {
-                    is MainUIState.Success -> showMovies(it.movies)
-                    MainUIState.Loading -> Unit
-                    is MainUIState.Error -> showLoadMoviesError()
+                    is MainUIState.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        showMovies(it.movies)
+                    }
+
+                    MainUIState.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+
+                    is MainUIState.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        showLoadMoviesError()
+                    }
                 }
             }
         }

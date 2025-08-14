@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.joohyeong.architecture_pattern_study.R
 import com.joohyeong.architecture_pattern_study.databinding.ItemMovieBinding
-import com.joohyeong.architecture_pattern_study.domain.Movie
+import com.joohyeong.architecture_pattern_study.model.Movie
 
 class MovieViewHolder(
     parent: ViewGroup,
