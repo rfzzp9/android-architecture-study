@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Architecture_Pattern_Study</string>
+    <string name="error_message_load_movie_detail">영화 정보를 불러오는데 실패했습니다.</string>
+    <string name="error_message_load_movies">영화를 불러오는 데 실패했습니다.</string>
+    <string name="text_movie_detail_director_prefix">감독: %1$s</string>
+    <string name="text_movie_detail_actor_prefix">배우: %1$s</string>
+    <string name="text_movie_detail_synopsis_prefix">줄거리: %1$s</string>
+    <string name="text_movie_detail_runtime_prefix">상영 시간: %1$s분</string>
+    <string name="text_movie_detail_rating_prefix">관람 등급: %1$s</string>
+    <string name="text_movie_detail_release_date_prefix">개봉일: %1$s</string>
+</resources>
