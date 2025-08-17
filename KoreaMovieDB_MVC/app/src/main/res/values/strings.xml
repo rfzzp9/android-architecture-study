@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KoreaMovieDB_MVC</string>
+    <string name="API_KEY">7PT3KTQJJJC189RS9XCZ</string>
+    <string name="baseUrl">http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/</string>
+</resources>
